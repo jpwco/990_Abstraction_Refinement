@@ -27,7 +27,7 @@
 \definecolor{light}{gray}{.75} 
 \newtheorem{theorem}{Theorem}
 
-
+\newcommand\etal{\emph{et al.}}
 
 \pagestyle{fancy}
 \lhead{CSCE 990 - FALL 2014} 
@@ -53,19 +53,21 @@
 
 
 \section{Target Problem Description}
-\cite{schneider2010synoptic}
 
 
 
-Model extraction seeks to help developers understand complex systems by finding a simplified representation that still retains useful high-level information.
-This high-level information helps validate assumptions about the system's behavior or to discover counter-examples that violate implicit requirements of a system's behavior.
-The system's behavior is often recorded in system logs or execution traces, that provide some facts about the behavior of the system but are sometimes overwhelmingly massive and difficult to connect to high-level facts, even though these facts might reveal critical information about the behavior of the system.
+Model extraction seeks to help computer system developers understand complex systems by finding a simplified representation that retains useful high-level information.
+This high-level information helps developers validate the system's behavior or to discover instructive counter-examples that violate implicit requirements. 
+Robotic designers likewise work with highly complex systems and struggle to understand the complex interrelations between components as the robotic system moves though time and space.
+Although model extraction tools like Synoptic~\cite{schneider2010synoptic} are useful for examining the relationships between temporal events, they have not, to our knowledge, been applied to spatial analysis for robotics. 
+We seek to explore whether existing software model extraction tools can used to examine complex spatial events in robotic systems.
 
-One tool that helps extract model from computer execution traces is Synoptic, that takes system event logs as input and extracts high-level models based on calculating invariants and coarsening and refining an abstract model.
+\section{Background}
+A system's behavior is often recorded in system logs or execution traces, that provide some facts about the behavior of the system but are sometimes overwhelmingly massive and difficult to connect to high-level facts, even though these facts might reveal critical information about the behavior of the system.
+%Tools that helps extract model from computer execution traces is Synoptic.
+Synoptic takes system event logs as input and extracts high-level models based on calculating invariants and coarsening and refining an abstract model.
 Synoptic and other tools usually work at an abstract level of system events, that happen in a particular order.
-We are interested in applying event model extraction techniques in the robotic domain, wherein events happen in both \emph{time} and \emph{spatial} domains.
-
-The problem is to explore if model extraction techniques that are usually applied to temporal events (like network program execution traces) can be applied to spatial robotic data.
+%The problem is to explore if model extraction techniques that are usually applied to temporal events (like network program execution traces) can be applied to spatial robotic data.
 Given multiple runs of a robot completing some task, is it possible to use the traces of its sensor data to construct models of spatial events common to this task?
 
 There are several challenges in this endeavor, including mapping existing robotic system trace data to \emph{events}, so that the spatial relationships of these events can be explored by extending previous model extraction techniques. 
@@ -80,7 +82,6 @@ For example, we may want to know that within a certain state, the robot's motion
 \emph{Concrete example}
 Consider the following position data coming from a trace of a robot's program execution:
 
-% All these values are the same now, tonight I will change them to trace a rectangle with a lot of noise/pausing in between so that the application in Section 2 actually makes sense
 
 xpos : 0.0519  ypos : 0.1742  zpos : 1.2231
 
@@ -108,9 +109,10 @@ xpos : 0.0519  ypos : 0.1742  zpos : 1.2231
 
 The running program uses this data in a local context, so that a position value may trigger thrusters to activate in response to a gust of wind, but looking at the traces, you cannot easily derive what the robot actually \emph{did} in space.
 
-It is difficult to make any sense of this raw data.  
-Because this kind of position data is often published in a periodic stream, there is a lot of noise.  
-The xpos value may be changing every millisecond, but if these values only fluctuate within a small range, you want to ignore these data points.  
+%It is difficult to make any sense of this raw data.  
+It is difficult to understand the relationships between high-level events by examining this low-level data.  
+Because this kind of position data is often published in a periodic stream, the higher-level events are lost in the overwhelming quantity of lower-level data.
+The \emph{xpos} value might change every millisecond, but if these values only fluctuate within a small range, you want to ignore these data points.  
 Creating a set of events will make meaningful spatial movements easier to handle by only considering user-defined importance.  
 
 \emph{Why does this matter?}  
@@ -118,7 +120,7 @@ Creating a set of events will make meaningful spatial movements easier to handle
 A robot run may fail, perhaps due to a program crash or an uncompleted task.  
 If the failure was not directly observed, if it is not directly linked to program calls which may be observed through dynamic invariant or modeling tools (Daikon, Synoptic), and if there are no helpful error messages, then you may want to examine its spatial behavior around failure states.
 Given multiple traces of failed runs, you could see that the failure is always preceded by some spatial event, or only occurs within some constrained spatial region.
-Comparing the "success" and "failure" spatial models against one another may give you insight to how the robot reacts to its environment which existing tools do not capture.
+Comparing the ``success" and ``failure" spatial models against one another may give you insight to how the robot reacts to its environment which existing tools do not capture.
 Analyzing spatial models across runs may also help improve the efficiency of robotic tasks.  
 A model may reveal unnecessary pacing back and forth when the task at hand does not require this behavior; observing this may help the developer remove the superfluous motion.
 
@@ -128,8 +130,8 @@ There are currently no tools we are aware of that can extract models of general 
 Synoptic can extract models based on temporal properties, and Daikon can extract invariants from traces, but these properties are often independent of the spatial models we hope to build.
 Both Synoptic and Daikon build their models/invariants around method calls and object values, but in a reactive environment, the execution of code may only model a part of how the robot moves through space.
 Additionally, these tools cannot meaningfully handle the large amounts of noise inherent to raw positional data.
-There has been much research into how robots can build a spatial map from trace data (see "A Robust, Qualitative Method for Robot Spatial Learning"), but this is one map specific to a particular environment.
-Similarly, there is work on real-time spatial representation for robot perception (see "Occupancy Grids" Elfes, 2013), but this also deals with single runs in a particular environment.
+Kuipers~\etal examined how robots can build a spatial map from trace data~\cite{kuipers1988robust}, but this is one map specific to a particular environment.
+Similarly, Elfes~\cite{elfes2013occupancy} demonstrated a real-time spatial representation for robot perception, but this also addresses single runs in a particular environment and does not examine the relationships between spatial events at an abstract level.
 Our tool will not try to build a precise map of the space in which it moves, but instead will look at general spatial events that occur across many runs of a task.
 
 \section{Sketch of technique}
@@ -139,7 +141,7 @@ These traces are called `bags' within the domain of ROS, and contain system mess
 Specifically, we will examine trace data from a UAV system used to collect water samples during windy conditions.
 Each file might contain 100,000 records, and we have 50-100 bags.
 
-\emph{The "how" details}
+\emph{The ``how" details}
 
 Starting with these bags, we plan to create functions that recognize certain sequences and values of message and record `events' to a new event log.
 This event log captures important spatial events during the execution of an automated script, or plan, that lasts about five minutes.
@@ -155,17 +157,17 @@ At a high level, the stages of model extraction will be:
 
 % This still needs quite a bit of work/editing/thinking...
 
-For each bag file, we will identify basic "events" that will make up a new BAG'' file.  
+For each bag file, we will identify basic ``events" that will make up a new BAG'' file.  
 For this descriptive example, we will only consider the \emph{UP} event, but the technique is the same for the other primitive events.  
 First the user will define a granularity of movement significance, such as 0.2 meters, so that any primitive movement which exceeds 0.2 meters will register as an event (or concatenation of events).
 We will run checks on each publication of the position data, and if the z-axis position has increased by more than 0.2 meters, we will divide the increase by 0.2, take the floor of the result, call it x, and will write x instances of UP to the BAG' file.  
 After we have a BAG' file that logs our primitive events, we will perform a linear scan on this file to check for each spatial property we are interested in.  
 For instance, to check for any \emph{BOUNCING} intervals, we will scan the BAG' file for alternating consecutive \emph{UP}s and \emph{DOWN}s. 
 These spacial events will be written to a BAG'' file.
-The system we will be using publishes a global "Subject Control State."
+The system we will be using publishes a global ``Subject Control State."
 So to provide a rough grouping as we scan for each new spatial event, we will write the spatial events to the BAG'' file under the heading of their respective states.
 This grouping will hopefully become less coarse throughout the course of implementation.
-From the collection of BAG'' files, we will note behaviors which occur more than a predefined number of times as "common" behaviors to each state for that given task.
+From the collection of BAG'' files, we will note behaviors which occur more than a predefined number of times as ``common" behaviors to each state for that given task.
 
 \emph{Tool applied to example}
 
