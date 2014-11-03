@@ -35,10 +35,6 @@ From the collection of BAG'' files, we will note behaviors which occur more than
 
 \emph{Tool applied to example}
 
-% This will demonstrate our example being parsed to the events "FRONT,FRONT,LEFT,LEFT,LEFT,BACK,BACK,RIGHT,RIGHT,RIGHT" which will then be translated to a "RECTANGLE" event
-% How contrived! How trivial! Ah well...
-% Because the example doesn't deal with multiple trace bag files, we will explain how a rough model might be extracted from multiple "RECTANGLE" events occuring in state 8...
-
 Applying our tool to the example trace data, assume we set the meaningful primitive events to occur with every change in 0.5 meters. 
 As the first BAG' file of primitive events is being created, each row is compared against its immediate successor by examining the difference between the corresponding coordinates.
 Examining the first two rows of the example, for the "xpos" change we get $0.0831-0.0519=0.0312$, which is below the threshold of 0.5 meters, so no event in the x-axis will be recorded.  
@@ -47,10 +43,10 @@ With "zpos", the difference is $1.7469-1.2231=0.5238$, which is above 0.5 meters
 
 Processing all the rows in this way gives a bag file with the series of events: 
 
-\emph{UP,UP,RIGHT,RIGHT,DOWN,DOWN,LEFT,LEFT}
+\emph{UP,UP,DOWN,DOWN,UP,UP,DOWN,DOWN}
 
-As we process the BAG' file, this series of events will be recognized as a \emph{RECTANGLE} spatial event, which will be written to the BAG'' file.  
-Our small example does not deal with multiple bag files, but the idea is that all these bag files will be parsed into separate BAG'' files, and if the above \emph{RECTANGLE} event occured each time in "State 8", then the model will state that in "State 8," the event \emph{RECTANGLE} is probable to occur.
+As we process the BAG' file, this series of events will be recognized as a \emph{BOUNCING} spatial event, which will be written to the BAG'' file.  
+Our small example does not deal with multiple bag files, but the idea is that all these bag files will be parsed into separate BAG'' files, and if the above \emph{BOUNCING} event occured each time just after transitioning to "State 8", then the model will state that near the beginning of "State 8," the event \emph{BOUNCING} is probable to occur.
 
 \emph{Techniques/tools/frameworks to be used}
 
