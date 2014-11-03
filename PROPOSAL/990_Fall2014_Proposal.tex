@@ -85,27 +85,27 @@ Consider the following position data coming from a trace of a robot's program ex
 
 xpos : 0.0519  ypos : 0.1742  zpos : 1.2231
 
-xpos : 0.0519  ypos : 0.1742  zpos : 1.2231
+xpos : 0.0831  ypos : 0.2014  zpos : 1.7469
 
-xpos : 0.0519  ypos : 0.1742  zpos : 1.2231
+xpos : 0.0427  ypos : 0.3003  zpos : 2.3333
 
-xpos : 0.0519  ypos : 0.1742  zpos : 1.2231
+xpos : 0.5843  ypos : 0.1967  zpos : 2.4091
 
-xpos : 0.0519  ypos : 0.1742  zpos : 1.2231
+xpos : 1.2082  ypos : 0.1861  zpos : 2.2984
 
-xpos : 0.0519  ypos : 0.1742  zpos : 1.2231
+xpos : 1.1549  ypos : 0.2989  zpos : 2.3003
 
-xpos : 0.0519  ypos : 0.1742  zpos : 1.2231
+xpos : 1.0227  ypos : 0.2117  zpos : 2.2811
 
-xpos : 0.0519  ypos : 0.1742  zpos : 1.2231
+xpos : 1.0519  ypos : 0.1647  zpos : 1.7210
 
-xpos : 0.0519  ypos : 0.1742  zpos : 1.2231
+xpos : 1.0813  ypos : 0.1539  zpos : 1.2093
 
-xpos : 0.0519  ypos : 0.1742  zpos : 1.2231
+xpos : 0.5003  ypos : 0.1702  zpos : 1.2151
 
-xpos : 0.0519  ypos : 0.1742  zpos : 1.2231
+xpos : 0.0001  ypos : 0.3099  zpos : 1.2177
 
-xpos : 0.0519  ypos : 0.1742  zpos : 1.2231
+xpos : 0.0103  ypos : 0.2774  zpos : 1.2031
 
 The running program uses this data in a local context, so that a position value may trigger thrusters to activate in response to a gust of wind, but looking at the traces, you cannot easily derive what the robot actually \emph{did} in space.
 
@@ -174,6 +174,19 @@ From the collection of BAG'' files, we will note behaviors which occur more than
 % This will demonstrate our example being parsed to the events "FRONT,FRONT,LEFT,LEFT,LEFT,BACK,BACK,RIGHT,RIGHT,RIGHT" which will then be translated to a "RECTANGLE" event
 % How contrived! How trivial! Ah well...
 % Because the example doesn't deal with multiple trace bag files, we will explain how a rough model might be extracted from multiple "RECTANGLE" events occuring in state 8...
+
+Applying our tool to the example trace data, assume we set the meaningful primitive events to occur with every change in 0.5 meters. 
+As the first BAG' file of primitive events is being created, each row is compared against its immediate successor by examining the difference between the corresponding coordinates.
+Examining the first two rows of the example, for the "xpos" change we get $0.0831-0.0519=0.0312$, which is below the threshold of 0.5 meters, so no event in the x-axis will be recorded.  
+Similarly, with "ypos", the difference is $0.2014-0.1742=0.0272$, which is also below 0.5, and no event in the y-axis will be recorded.
+With "zpos", the difference is $1.7469-1.2231=0.5238$, which is above 0.5 meters, and because it is a positive increase in the z-axis, an event of \emph{UP} will be written to the BAG' file.
+
+Processing all the rows in this way gives a bag file with the series of events: 
+
+\emph{UP,UP,RIGHT,RIGHT,DOWN,DOWN,LEFT,LEFT}
+
+As we process the BAG' file, this series of events will be recognized as a \emph{RECTANGLE} spatial event, which will be written to the BAG'' file.  
+Our small example does not deal with multiple bag files, but the idea is that all these bag files will be parsed into separate BAG'' files, and if the above \emph{RECTANGLE} event occured each time in "State 8", then the model will state that in "State 8," the event \emph{RECTANGLE} is probable to occur.
 
 \emph{Techniques/tools/frameworks to be used}
 
