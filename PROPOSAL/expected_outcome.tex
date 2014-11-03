@@ -1,0 +1,14 @@
+\section{Expected Outcome} 
+
+\emph{Connections with analyses studied in class}
+
+As we hope to infer spatial models from trace data over multiple runs, our proposed tool shares many similarities with Daikon, which infers program invariants from (possibly) multiple runs given some input.
+Like Daikon, we hope to work backwards from the trace data; because of this, like Daikon, the quality/correctness of the models we extract will be closely tied to the quality/robustness of the input data set.
+We have also taken the idea of confidence thresholds from Daikon, to determine when a spatial event occurs with regularity, and when it just happened to occur a limited number of times.
+Unlike Daikon, we are not looking at invariants, so our models can be much more lax; if a spatial property is missing from some traces, but is present in most, we will still include this property in the model.
+The publisher/subscriber architecture that captures events during a robot's task is similar to instrumenting your code to output desired variable values (Valgrind, Daikon).
+However, raw sensor data is different than instrumented code because these sensors will output periodically, regardless of whether values have changed, and this creates a lot of data noise which must be filtered.
+The way we will extract models from multiple BAG'' files (containing spatial events) may employ methods of time-series (state-series in our case) analysis and multivariate analysis which are used in Jenkins.  
+We hope to use the spatial models to identify behavior around areas where runtime failures occur, though this will not be an automatic recovery, as in Carzaniga~\etal.
+
+\emph{Advances in state of practice/art}
