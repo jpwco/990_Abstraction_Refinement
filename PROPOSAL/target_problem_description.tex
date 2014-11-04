@@ -4,19 +4,19 @@
 
 Model extraction seeks to help computer system developers understand complex systems by finding a simplified representation that retains useful high-level information.
 This high-level information helps developers validate the system's behavior or to discover instructive counter-examples that violate implicit requirements. 
-Robotic designers likewise work with highly complex systems and struggle to understand the complex interrelations between components as the robotic system moves though time and space.
+Robotic designers, likewise, work with highly complex systems and struggle to understand the complex interrelations between components as the robotic system moves though time and space.
 Although model extraction tools like Synoptic~\cite{schneider2010synoptic} are useful for examining the relationships between temporal events, they have not, to our knowledge, been applied to spatial analysis for robotics. 
 We seek to explore whether existing software model extraction tools can used to examine the relationship between spatial events and high-level behavior of a robotic system so that we can connect high-level spatial events to whether robotic systems succeed or fail to accomplish some task.
 
 \subsection{Background}
 
 System logs or execution traces capture a low-level of information about a system. 
-This low-level data can be invaluable in identify faults in specific components or analyzing information that happens very quickly and must be examined at a slow time scale to be understood.
+This low-level data can be invaluable in identifying faults in specific components or analyzing information that happens very quickly and must be examined at a slow time scale to be understood.
 However, these logs can be overwhelmingly large, and therefore impractical to examine line-by-line.
-Further, even if you could examine every line, it can be difficult to comprehend how subsystems interact at a high-level behavior by examining log data.
+Further, even if you could examine every line, it can be difficult to comprehend how subsystems interact by examining log data.
 For example, it might be difficult to determine that a walking robot loses balance when it's arm, head, and leg are all at a certain position, if you only examine the all the sensor data separately.
 
-To help make developers understand complex and asynchronous systems at a higher level, tools like Synoptic take detailed event logs and create an abstraction that describes the interactions of groups of events.
+To help developers understand complex and asynchronous systems at a higher level, tools like Synoptic take detailed event logs and create an abstraction that describes the interactions of groups of events.
 This abstraction is usually a simple graph that summarizes many thousands of individual events in a sequence into an easy-to-understand representation.
 Synoptic is useful when you are looking to understand the chronological relationships between events \emph{temporally}.
 However, Synoptic does not create abstractions for events that change \emph{spatially}.
@@ -27,7 +27,7 @@ Instead, we would like to examine whether the performance of a robotic system ca
 
 Specifically, in our lab, we utilize a UAV to collect water samples from streams and lakes.
 While measuring the systems' performance in wind, we found that it is difficult to identify why the system sometimes collected water better than at other times.
-After examine many variables separately (the pump, the tube, the wind-speed, the battery level) and failing to find a specific reason, we suspect that the performance might be caused by an interplay of many factors.
+After examining many variables separately (the pump, the tube, the wind-speed, the battery level) and failing to find a specific reason, we suspect that the occasional poor performance might be caused by an interplay of many factors.
 It might be the case that the system exhibits a common spatial pattern that can be linked to how well the system performs.
 
 
@@ -47,7 +47,7 @@ For instance, a relatively equal number of \emph{UP}s followed by \emph{DOWN}s i
 We hope to characterize shapes of movements as well as spatial constraints (for example, remaining within a sphere of motion). 
 
 \emph{Concrete example} \\
-Consider the following position data coming from a trace of a robot's program execution:
+Consider the following position data coming from a trace of a robot's program execution, in chronological order:
 
 
 xpos : 0.0519  ypos : 0.1742  zpos : 1.2231 \\
@@ -71,7 +71,7 @@ Creating a set of events will make meaningful spatial movements easier to handle
 \emph{Why does this matter?}  
 
 A robot run may fail, perhaps due to a program crash or an uncompleted task.  
-If the failure was not directly observed, if it is not directly linked to program calls which may be observed through dynamic invariant or modeling tools (Daikon, Synoptic), and if there are no helpful error messages, then you may want to examine its spatial behavior around failure states.
+If the failure was not directly observed, if it is not directly linked to program calls which may be observed through dynamic invariant or modeling tools (Daikon~\cite{ernst2007daikon}, Synoptic), and if there are no helpful error messages, then you may want to examine its spatial behavior around failure states.
 Given multiple traces of failed runs, you could see that the failure is always preceded by some spatial event, or only occurs within some constrained spatial region.
 Comparing the ``success" and ``failure" spatial models against one another may give you insight to how the robot reacts to its environment which existing tools do not capture.
 Analyzing spatial models across runs may also help improve the efficiency of robotic tasks.  
