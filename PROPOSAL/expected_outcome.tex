@@ -8,8 +8,8 @@ We have also taken the idea of confidence thresholds from Daikon, to determine w
 Unlike Daikon, we are not looking at invariants, so our models can be much more lax; if a spatial property is missing from some traces, but is present in most, we will still include this property in the model.
 The publisher/subscriber architecture that captures events during a robot's task is similar to instrumenting your code to output desired variable values (Valgrind, Daikon).
 However, raw sensor data is different than instrumented code because these sensors will output periodically, regardless of whether values have changed, and this creates a lot of data noise which must be filtered.
-The way we will extract models from multiple BAG'' files (containing spatial events) may employ methods of time-series (state-series in our case) analysis and multivariate analysis which are used in Jenkins.  
-We hope to use the spatial models to identify behavior around areas where runtime failures occur, though this will not be an automatic recovery, as in Carzaniga~\etal.
+%The way we will extract models from multiple BAG'' files (containing spatial events) may employ methods of time-series (state-series in our case) analysis and multivariate analysis which are used in Jenkins.   
+We hope to use the spatial models to identify behavior around areas where runtime failures occur, though this will not be an automatic recovery, as in Carzaniga~\etal~\cite{carzaniga2013automatic}.
 
 \emph{Advances in state of practice/art}
 
