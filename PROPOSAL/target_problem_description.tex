@@ -32,7 +32,7 @@ It might be the case that the system exhibits a common spatial pattern that can 
 
 
 
-The spatial patterns in our problem ar
+%The spatial patterns in our problem ar
 %Tools that helps extract model from computer execution traces is Synoptic.
 %Model extraction tools like Synoptic takes system event logs as input and extracts high-level models based on calculating invariants and coarsening and refining an abstract model.
 %Synoptic and other tools usually work at an abstract level of system events, that happen in a particular order.
@@ -41,12 +41,10 @@ The spatial patterns in our problem ar
 
 There are several challenges in this endeavor, including mapping existing robotic system trace data to \emph{events}, so that the spatial relationships of these events can be explored by extending previous model extraction techniques. 
 This will include defining an event such as \emph{UP} as a change in the z-axis of 0.5 meters, for example, so that any fluctuations in the z-axis less than 0.5 meters will not be considered.  
-The events will include basic spatial movements such as \emph{UP, DOWN, LEFT, RIGHT, FRONT, BACK} 
+%The events will include basic spatial movements such as \emph{UP, DOWN, LEFT, RIGHT, FRONT, BACK} 
 The next challenge will be mapping sets of these events to higher-level spacial movements.  
-For instance, a relatively equal number of \emph{UP}s followed by \emph{DOWN}s in an alternating pattern could be defined as \emph{BOUNCING}; similarly \emph{FRONT} alternating with \emph{BACK} could be \emph{PACING}.
-We hope to characterize shapes of movements, so that a chain of \emph{FRONT,FRONT,RIGHT,BACK,BACK,LEFT} will be recognized as a \emph{RECTANGLE}.
-It may also be useful to look at spatial constraints within event intervals.  
-For example, we may want to know that within a certain state, the robot's motion is constrained to a consistently-sized sphere, or we may see that between two state changes, the robot is always below a certain altitude, etc.
+For instance, a relatively equal number of \emph{UP}s followed by \emph{DOWN}s in an alternating pattern could be defined as \emph{BOUNCING}.
+We hope to characterize shapes of movements as well as spatial constraints (for example, remaining within a sphere of motion). 
 
 \emph{Concrete example} \\
 Consider the following position data coming from a trace of a robot's program execution:
@@ -55,15 +53,12 @@ Consider the following position data coming from a trace of a robot's program ex
 xpos : 0.0519  ypos : 0.1742  zpos : 1.2231 \\
 xpos : 0.0831  ypos : 0.2014  zpos : 1.7469 \\
 xpos : 0.0427  ypos : 0.3003  zpos : 2.3333 \\
-xpos : 0.5843  ypos : 0.1967  zpos : 2.4091 \\
-xpos : 1.2082  ypos : 0.1861  zpos : 2.2984 \\
-xpos : 1.1549  ypos : 0.2989  zpos : 2.3003 \\
-xpos : 1.0227  ypos : 0.2117  zpos : 2.2811 \\
-xpos : 1.0519  ypos : 0.1647  zpos : 1.7210 \\
-xpos : 1.0813  ypos : 0.1539  zpos : 1.2093 \\
-xpos : 0.5003  ypos : 0.1702  zpos : 1.2151 \\
-xpos : 0.0001  ypos : 0.3099  zpos : 1.2177 \\
-xpos : 0.0103  ypos : 0.2774  zpos : 1.2031 \\
+xpos : 0.0843  ypos : 0.1967  zpos : 1.7091 \\
+xpos : 0.0582  ypos : 0.1861  zpos : 1.1984 \\
+xpos : 0.1549  ypos : 0.2989  zpos : 1.7003 \\
+xpos : 0.0227  ypos : 0.2117  zpos : 2.3811 \\
+xpos : 0.0519  ypos : 0.1647  zpos : 1.7210 \\
+xpos : 0.0813  ypos : 0.1539  zpos : 1.2093 \\
 
 The running program uses this data in a local context, so that a position value may trigger thrusters to activate in response to a gust of wind, but looking at the traces, you cannot easily derive what the robot actually \emph{did} in space.
 
@@ -89,5 +84,5 @@ Synoptic can extract models based on temporal properties, and Daikon can extract
 Both Synoptic and Daikon build their models/invariants around method calls and object values, but in a reactive environment, the execution of code may only model a part of how the robot moves through space.
 Additionally, these tools cannot meaningfully handle the large amounts of noise inherent to raw positional data.
 Kuipers~\etal examined how robots can build a spatial map from trace data~\cite{kuipers1988robust}, but this is one map specific to a particular environment.
-Similarly, Elfes~\cite{elfes2013occupancy} demonstrated a real-time spatial representation for robot perception, but this also addresses single runs in a particular environment and does not examine the relationships between spatial events at an abstract level.
+%Similarly, Elfes~\cite{elfes2013occupancy} demonstrated a real-time spatial representation for robot perception, but this also addresses single runs in a particular environment and does not examine the relationships between spatial events at an abstract level.
 Our tool will not try to build a precise map of the space in which it moves, but instead will look at general spatial events that occur across many runs of a task.
