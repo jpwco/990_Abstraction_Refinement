@@ -23,8 +23,8 @@ At a high level, the stages of model extraction will be:
 
 For each bag file, we will identify basic ``events" that will make up a new BAG' file.  
 For this descriptive example, we will only consider the \emph{UP} event, but the technique is the same for the other primitive events.  
-First the user will define a granularity of movement significance, such as 0.2 meters, so that any primitive movement which exceeds 0.2 meters will register as an event (or concatenation of events).
-We will run checks on each publication of the position data, and if the z-axis position has increased by more than 0.2 meters, we will divide the increase by 0.2, take the floor of the result, call it x, and will write x instances of UP to the BAG' file.  
+First the user will define a granularity of movement significance, such as 0.5 meters, so that any primitive movement which exceeds 0.5 meters will register as an event (or concatenation of events).
+We will run checks on each publication of the position data, and if the z-axis position has increased by more than 0.5 meters, we will divide the increase by 0.5, take the floor of the result, call it x, and will write x instances of UP to the BAG' file.  
 After we have a BAG' file that logs our primitive events, we will perform a linear scan on this file to check for each spatial property we are interested in.  
 For instance, to check for any \emph{BOUNCING} intervals, we will scan the BAG' file for alternating consecutive \emph{UP}s and \emph{DOWN}s. 
 These spacial events will be written to a BAG'' file.
@@ -54,6 +54,7 @@ We will write the tool using a scripting language, either Ruby or Python.
 We use the idea of confidence thresholds from Daikon to determine when some spatial property is considered "regular" as opposed to "random" across runs. 
 For the model extraction component of our tool, we will use segment and interval trees to determine when events occur within states and/or across multiple states.
 The spatial events will be based on "templates" which are defined by the occurrence and order of specified primitive events.
+Because the ``event strings" which are fed to the above templates will themselves contain noise in the form of irrelevant event primitives, recognizing spatial events will use techniques from approximate string matching.
 We may find it useful to define our primitives in the language of spatial logic found in Peuquet~\etal and spatial constraints found in Bindiganavale~\etal. 
 
 \emph{Description of Solution}
