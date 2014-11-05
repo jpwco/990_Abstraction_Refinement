@@ -1,0 +1,33 @@
+bouncing
+stationary (with various bounds)
+centering
+
+change direction event
+radio change data rate event
+
+acceleration change
+
+zero-g
+
+near ground
+away from ground
+
+touching water
+
+
+touchesGround
+
+leavesGround
+
+compassVectorChanges?
+
+(L shapes)
+mostlyHozToVertical
+mostlyVerticalToHoz
+
+translatingInX
+
+translatingInY
+
+
+
