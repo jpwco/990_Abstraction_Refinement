@@ -4,19 +4,19 @@
 
 Model extraction seeks to help computer system developers understand complex systems by finding a simplified representation that retains useful high-level information.
 This high-level information helps developers validate the system's behavior or to discover instructive counter-examples that violate implicit requirements. 
-Robotic designers likewise work with highly complex systems and struggle to understand the complex interrelations between components as the robotic system moves though time and space.
+Robotic designers, likewise, work with highly complex systems and struggle to understand the complex interrelations between components as the robotic system moves though time and space.
 Although model extraction tools like Synoptic~\cite{schneider2010synoptic} are useful for examining the relationships between temporal events, they have not, to our knowledge, been applied to spatial analysis for robotics. 
 We seek to explore whether existing software model extraction tools can used to examine the relationship between spatial events and high-level behavior of a robotic system so that we can connect high-level spatial events to whether robotic systems succeed or fail to accomplish some task.
 
 \subsection{Background}
 
 System logs or execution traces capture a low-level of information about a system. 
-This low-level data can be invaluable in identify faults in specific components or analyzing information that happens very quickly and must be examined at a slow time scale to be understood.
+This low-level data can be invaluable in identifying faults in specific components or analyzing information that happens very quickly and must be examined at a slow time scale to be understood.
 However, these logs can be overwhelmingly large, and therefore impractical to examine line-by-line.
-Further, even if you could examine every line, it can be difficult to comprehend how subsystems interact at a high-level behavior by examining log data.
+Further, even if you could examine every line, it can be difficult to comprehend how subsystems interact by examining log data.
 For example, it might be difficult to determine that a walking robot loses balance when it's arm, head, and leg are all at a certain position, if you only examine the all the sensor data separately.
 
-To help make developers understand complex and asynchronous systems at a higher level, tools like Synoptic take detailed event logs and create an abstraction that describes the interactions of groups of events.
+To help developers understand complex and asynchronous systems at a higher level, tools like Synoptic take detailed event logs and create an abstraction that describes the interactions of groups of events.
 This abstraction is usually a simple graph that summarizes many thousands of individual events in a sequence into an easy-to-understand representation.
 Synoptic is useful when you are looking to understand the chronological relationships between events \emph{temporally}.
 However, Synoptic does not create abstractions for events that change \emph{spatially}.
@@ -27,12 +27,12 @@ Instead, we would like to examine whether the performance of a robotic system ca
 
 Specifically, in our lab, we utilize a UAV to collect water samples from streams and lakes.
 While measuring the systems' performance in wind, we found that it is difficult to identify why the system sometimes collected water better than at other times.
-After examine many variables separately (the pump, the tube, the wind-speed, the battery level) and failing to find a specific reason, we suspect that the performance might be caused by an interplay of many factors.
+After examining many variables separately (the pump, the tube, the wind-speed, the battery level) and failing to find a specific reason, we suspect that the occasional poor performance might be caused by an interplay of many factors.
 It might be the case that the system exhibits a common spatial pattern that can be linked to how well the system performs.
 
 
 
-The spatial patterns in our problem ar
+%The spatial patterns in our problem ar
 %Tools that helps extract model from computer execution traces is Synoptic.
 %Model extraction tools like Synoptic takes system event logs as input and extracts high-level models based on calculating invariants and coarsening and refining an abstract model.
 %Synoptic and other tools usually work at an abstract level of system events, that happen in a particular order.
@@ -41,29 +41,24 @@ The spatial patterns in our problem ar
 
 There are several challenges in this endeavor, including mapping existing robotic system trace data to \emph{events}, so that the spatial relationships of these events can be explored by extending previous model extraction techniques. 
 This will include defining an event such as \emph{UP} as a change in the z-axis of 0.5 meters, for example, so that any fluctuations in the z-axis less than 0.5 meters will not be considered.  
-The events will include basic spatial movements such as \emph{UP, DOWN, LEFT, RIGHT, FRONT, BACK} 
+%The events will include basic spatial movements such as \emph{UP, DOWN, LEFT, RIGHT, FRONT, BACK} 
 The next challenge will be mapping sets of these events to higher-level spacial movements.  
-For instance, a relatively equal number of \emph{UP}s followed by \emph{DOWN}s in an alternating pattern could be defined as \emph{BOUNCING}; similarly \emph{FRONT} alternating with \emph{BACK} could be \emph{PACING}.
-We hope to characterize shapes of movements, so that a chain of \emph{FRONT,FRONT,RIGHT,BACK,BACK,LEFT} will be recognized as a \emph{RECTANGLE}.
-It may also be useful to look at spatial constraints within event intervals.  
-For example, we may want to know that within a certain state, the robot's motion is constrained to a consistently-sized sphere, or we may see that between two state changes, the robot is always below a certain altitude, etc.
+For instance, a relatively equal number of \emph{UP}s followed by \emph{DOWN}s in an alternating pattern could be defined as \emph{BOUNCING}.
+We hope to characterize shapes of movements as well as spatial constraints (for example, remaining within a sphere of motion). 
 
 \emph{Concrete example} \\
-Consider the following position data coming from a trace of a robot's program execution:
+Consider the following position data coming from a trace of a robot's program execution, in chronological order:
 
 
 xpos : 0.0519  ypos : 0.1742  zpos : 1.2231 \\
 xpos : 0.0831  ypos : 0.2014  zpos : 1.7469 \\
 xpos : 0.0427  ypos : 0.3003  zpos : 2.3333 \\
-xpos : 0.5843  ypos : 0.1967  zpos : 2.4091 \\
-xpos : 1.2082  ypos : 0.1861  zpos : 2.2984 \\
-xpos : 1.1549  ypos : 0.2989  zpos : 2.3003 \\
-xpos : 1.0227  ypos : 0.2117  zpos : 2.2811 \\
-xpos : 1.0519  ypos : 0.1647  zpos : 1.7210 \\
-xpos : 1.0813  ypos : 0.1539  zpos : 1.2093 \\
-xpos : 0.5003  ypos : 0.1702  zpos : 1.2151 \\
-xpos : 0.0001  ypos : 0.3099  zpos : 1.2177 \\
-xpos : 0.0103  ypos : 0.2774  zpos : 1.2031 \\
+xpos : 0.0843  ypos : 0.1967  zpos : 1.7091 \\
+xpos : 0.0582  ypos : 0.1861  zpos : 1.1984 \\
+xpos : 0.1549  ypos : 0.2989  zpos : 1.7003 \\
+xpos : 0.0227  ypos : 0.2117  zpos : 2.3811 \\
+xpos : 0.0519  ypos : 0.1647  zpos : 1.7210 \\
+xpos : 0.0813  ypos : 0.1539  zpos : 1.2093 \\
 
 The running program uses this data in a local context, so that a position value may trigger thrusters to activate in response to a gust of wind, but looking at the traces, you cannot easily derive what the robot actually \emph{did} in space.
 
@@ -76,7 +71,7 @@ Creating a set of events will make meaningful spatial movements easier to handle
 \emph{Why does this matter?}  
 
 A robot run may fail, perhaps due to a program crash or an uncompleted task.  
-If the failure was not directly observed, if it is not directly linked to program calls which may be observed through dynamic invariant or modeling tools (Daikon, Synoptic), and if there are no helpful error messages, then you may want to examine its spatial behavior around failure states.
+If the failure was not directly observed, if it is not directly linked to program calls which may be observed through dynamic invariant or modeling tools (Daikon~\cite{ernst2007daikon}, Synoptic), and if there are no helpful error messages, then you may want to examine its spatial behavior around failure states.
 Given multiple traces of failed runs, you could see that the failure is always preceded by some spatial event, or only occurs within some constrained spatial region.
 Comparing the ``success" and ``failure" spatial models against one another may give you insight to how the robot reacts to its environment which existing tools do not capture.
 Analyzing spatial models across runs may also help improve the efficiency of robotic tasks.  
@@ -89,5 +84,5 @@ Synoptic can extract models based on temporal properties, and Daikon can extract
 Both Synoptic and Daikon build their models/invariants around method calls and object values, but in a reactive environment, the execution of code may only model a part of how the robot moves through space.
 Additionally, these tools cannot meaningfully handle the large amounts of noise inherent to raw positional data.
 Kuipers~\etal examined how robots can build a spatial map from trace data~\cite{kuipers1988robust}, but this is one map specific to a particular environment.
-Similarly, Elfes~\cite{elfes2013occupancy} demonstrated a real-time spatial representation for robot perception, but this also addresses single runs in a particular environment and does not examine the relationships between spatial events at an abstract level.
+%Similarly, Elfes~\cite{elfes2013occupancy} demonstrated a real-time spatial representation for robot perception, but this also addresses single runs in a particular environment and does not examine the relationships between spatial events at an abstract level.
 Our tool will not try to build a precise map of the space in which it moves, but instead will look at general spatial events that occur across many runs of a task.
