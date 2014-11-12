@@ -60,15 +60,17 @@ Instead of basing our spatial model on actions that may be unique to each system
 We will be able to answer queries such as: ``can I get to this region of space?" (mobility), ``is the robot at a specified region within a specified time? or ever?" (location), ``do two robots occupy the same space at the same time?" (interference), ``does the robot stay within this specified space"? (containment) , ``is $robot_1$ ever $n$ units away from $robot_2$?" (separation/cohesion), and possibly more.
 
 \begin{itemize}
-  \item INPUT : multiple trace files of temporal-positional sensor readings of a robotic system performing a programmed task (alone or in tandem).
+  \item INPUT : one or more trace files of temporal-positional sensor readings of a robotic system performing a programmed task (alone or in tandem).
 
   \item OUTPUT : a list of properties such as: "$robot_1$ interferes with $robot_2$, $robot_1$ always remains below 3 meters", etc., grouped together either by robotic entity or by property.
 \end{itemize} 
  
 We partition the space into rectangular boxes and enumerate these to facilitate querying.
-To check a property, we assume it is true, until a counterexample from the trace is found; then we may stop the search.
+We will have operators that work directly on the traces to return basic facts, and operators that work on these basic facts to derive new facts.
+To check for basic facts, we assume some property is true, until a counterexample from the trace is found; then we may stop the search.
   
-We will run initial tests using two UAVs in the NIMBUS lab flying tandem during a task.  We will see how adjusting parameters like the size of the box partitions and confidence-thresholds on properties affects the returned spatial models. 
+We will run initial tests using two UAVs in the NIMBUS lab flying tandem during a task.  
+We will see how adjusting parameters like the size of the box partitions and confidence-thresholds on properties affects the returned spatial models. 
 
 
 \bibliographystyle{IEEEtran}
