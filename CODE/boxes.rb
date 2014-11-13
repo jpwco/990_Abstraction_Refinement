@@ -1,41 +1,42 @@
 load 'aliases.rb'
 
-def map_to_boxes ( pos_trace, boxes )
+def map_to_boxes ( pos_trace, boxes, parts, dims )
   box_trace = []
-  pos_trace.each { |pos| box_trace << map_to_box( pos, boxes ) }
+  pos_trace.each { |pos| box_trace << map_to_box( pos, boxes, parts, dims ) }
   return box_trace
 end
 
-def map_to_box ( pos, boxes )
-  box_index = boxes.find_index { |box| 
-   ((pos.x >= box.x.lower && pos.x < box.x.upper) &&
-    (pos.y >= box.y.lower && pos.y < box.y.upper) &&
-    (pos.z >= box.z.lower && pos.z < box.z.upper)) }
+def map_to_box ( pos, boxes, parts, dims )
+  coords = pos_to_coords(pos, parts, dims)
+  return box_index(boxes, coords)
+end
+
+def pos_to_coords ( pos, parts, dims )
+  coords = [lower_unit_bound(pos.x,parts.x,dims.x),
+            lower_unit_bound(pos.y,parts.y,dims.y),
+            lower_unit_bound(pos.z,parts.z,dims.z)]
+  return coords
+end
+
+def box_index ( boxes, coords )
+  return boxes.find_index { |box| box == [coords.x, coords.y, coords.z] }
   return box_index
 end
 
-# INPUT:  - parts is a 3-tuple of # of partitions for each axis
-#         - dims is a 3-tuple of dimension magnitudes
-# OUTPUT: returns an array of the partitioned boxes of space,
-#         where any box = [[x_low,x_up],[y_low,y_up],[z_low,z_up]]
-def make_boxes ( parts, dims )
-  x_segs = segment(parts.x,dims.x)
-  y_segs = segment(parts.y,dims.y)
-  z_segs = segment(parts.z,dims.z)
-  boxes = x_segs.product(y_segs,z_segs)
-  return boxes
+def lower_unit_bound ( position, partition_num, dimension )
+  relative_pos = position / dimension
+  low_bound = (relative_pos * partition_num).floor
+  return low_bound
 end
 
-# returns an array of n segments, where
-# each seg = [low_bound_of_seg,up_bound_of_seg]
-def segment ( n, entire_length )
-  low_bound = 0.0; segments = []
-  for i in 1..n
-    up_bound = (i.to_f/n) * entire_length
-    segments << [low_bound,up_bound]
-    low_bound = up_bound
-  end
-  return segments
+def unit_array ( u )
+  return [*0..(u-1)]
+end
+
+def make_boxes ( parts )
+  p_array = parts.map { |p| unit_array(p) }
+  boxes = p_array.x.product(p_array.y,p_array.z)
+  return boxes
 end
 
 ###############
@@ -43,23 +44,16 @@ end
 ###############
 
 # x,y,z axes will each be split into 10 parts
-partition_specs   = [10,10,10]
-volume_dimensions = [20,20,20]
+@partition_specs   = [10,10,10]
+@volume_dimensions = [20,20,20]
 
 # each position event as [x_pos,y_pos,z_pos]
-pos_trace = [
-  [0.5,0.5,0.0],  #occupying box 0
-  [2.5,2.5,0.0],  #occupying box 110
-  [5.2,5.8,2.1],  #occupying box 221
-  [8.1,5.6,4.3],  #occupying box 422
-  [0.1,8.1,6.2]   #occupying box 43
+@pos_trace = [
+  [2.5,1.5,3.0], 
+  [1.5,2.5,0.0],
+  [5.2,5.8,2.1],
+  [8.1,5.6,4.3],
+  [0.1,8.1,6.2]
 ]
-puts "Given a position trace of:"; p pos_trace
-
-# with given partitions, there will be 10*10*10=1000 boxes
-boxes = make_boxes(partition_specs, volume_dimensions)
-# uncomment below to see bounds of box 110
-# puts "The bounds of box 110 are:"; p boxes[110] 
-box_trace = map_to_boxes(pos_trace,boxes)
-puts "The flight path through space-boxes is:"
-p box_trace
+@boxes = make_boxes(@partition_specs)
+@box_trace = map_to_boxes(@pos_trace, @boxes, @partition_specs, @volume_dimensions)
