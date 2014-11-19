@@ -1,0 +1,88 @@
+\documentclass{article}
+
+\usepackage{epsfig}  
+\usepackage{amsmath} 
+\usepackage{amssymb} 
+\usepackage{amsthm}  
+\usepackage{listings} 
+\usepackage{color}
+%\usepackage{enumerate}
+\usepackage{enumitem}
+\usepackage{multirow}
+\usepackage{lastpage}
+\usepackage{geometry}
+\usepackage{fancyhdr}
+\usepackage[all]{xy}
+\usepackage{wrapfig}
+\usepackage{listings}
+\usepackage{url}
+\usepackage{tikz}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage[justification=centering]{caption}
+\usetikzlibrary{arrows}
+\lstset{language=C, tabsize=4, basicstyle=\ttfamily}
+
+\definecolor{light}{gray}{.75} 
+\newtheorem{theorem}{Theorem}
+
+
+\pagestyle{fancy}
+\lhead{CSCE 990 - FALL 2014} 
+\chead{\bfseries LOGIC}
+\rhead{Gerrard, Ore}
+\lfoot{Gerrard, Ore}
+\cfoot{\thepage\ of \pageref{LastPage}}
+\rfoot{17 November 2014}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+% JPO COMMANDS
+\newcommand\etal{\emph{et al.}}
+\newcommand\Z{\mathbb{Z}}
+\newcommand\N{\mathbb{N}}
+
+
+\hoffset 0pt
+\voffset 0pt
+\textwidth 15cm
+\textheight 8.5in
+\oddsidemargin 9pt
+\marginparwidth 25pt
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{.25cm}
+
+%- - - - - - - - - - - - - - - - BEGIN DOCUMENT - - - - - - - - - - - - - - - - - - - 
+\begin{document}
+
+
+
+% 17 NOV
+
+Time sequence
+$T =  \N \cup \{0\}, t \in T$
+
+Graph $G$
+
+
+Existence of box from trace point\\
+$p_t \rightarrow (b^i | b_{xyz\_min}^i \leq p_{xyz} < b_{xyx\_max}^i)$
+
+
+Existence of vertex from point\\
+$(p \rightarrow b^i) \rightarrow v^i$
+
+Existence of directed edge from consecutive points\\
+$((p_t \rightarrow b^i) \land (p_{t+1} \rightarrow b^j) \land (i \neq j)) \rightarrow e(v^i, v^j) $
+
+
+Definition of Path\\
+$P ::  BOX, BOX \rightarrow \{0,1\}$\\
+$P(b_a, b_z) = 1 \Leftrightarrow (\exists v_i | e(v_a, v_i) \land \exists \land e(v_i, v_j) \land e(v_j, v_z)) $
+
+%$$3\ \ \ \ h \leftarrow max(max-list(conf-set[i]),max-list(past-fc[i]))$$
+
+
+
+\end{document}
