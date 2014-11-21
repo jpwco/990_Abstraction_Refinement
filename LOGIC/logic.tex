@@ -56,37 +56,7 @@
 %- - - - - - - - - - - - - - - - BEGIN DOCUMENT - - - - - - - - - - - - - - - - - - - 
 \begin{document}
 
-
-\textbf{PROPERTIES}\\
-SINGULAR\\
-\begin{itemize}
-  \item Can a actor return to its home?
-  \item Can a actor move to multiple places?
-  \item Does the trace have no repetition?
-  \item Does a actor return to a box
-  \item Can a actor teleport? 
-  \item Does a actor have a $n$ hot path? (pheremone)
-  \item Can an actor back up?
-  \item What is the longest path in one continuous direction?
-  \item Is the actor confined to a plane?
-  \item what is the total number of visited voxels?
-  \item
-\end{itemize}
-
-MULTI-TRACE, SINGLE ACTOR\\
-\begin{itemize}
-  \item Which voxel is visited most (if any)?
-  \item 
-\end{itemize}
-
-MULTIPLE SIMULTANEOUS ACTORS\\
-\begin{itemize}
-  \item Do two actors paths intersect with an $n$-sized neighborhood?
-  \item 
-\end{itemize}
-
-% 17 NOV
-
+\textbf{FUNDAMENTALS}\\
 Time sequence
 $T =  \N \cup \{0\}, t \in T$
 
@@ -110,6 +80,42 @@ $P(b_a, b_z) = 1 \Leftrightarrow (\exists v_i | e(v_a, v_i) \land \exists \land 
 
 %$$3\ \ \ \ h \leftarrow max(max-list(conf-set[i]),max-list(past-fc[i]))$$
 
+
+\textbf{PROPERTIES}\\
+SINGULAR\\
+\begin{itemize}
+\item Can an actor return to its home?  There exists a path from $home$ to $home$.  
+  $$\exists P(b_{home}, b_{home}) \models a_{returnhome}$$ 
+\item Can an actor move to multiple places? There exists a path from home to at least two places.
+  $$\exists (P(b_{home}, b_a), P(b_{home}, b_b)| b_a \neq b_a) \models a_{multiplePlaces}$$
+
+\item Does the trace have no repetition? For all paths, no destination is an origin.
+  $$\forall P(b_a, b_b), P(b_c, b_d), b_a \neq b_d \models a_{noRepetition}$$
+
+\item Does an actor return to a box? There exists a path from a box to that same box.
+  $$\exists P_{ab}, P_{cd} | a = d \models a_{returns}$$
+\item Can an actor teleport? Does there exist an edge from two `non adjacent boxes'  (Define adjacents?)
+\item Does an actor have a $n$ hot box? 
+\item Does an actor have a $n$ hot path? (pheremone)
+\item Can an actor back up?
+\item What is the longest path in one continuous direction?
+\item Is the actor confined to a plane?
+\item what is the total number of visited voxels?
+\end{itemize}
+
+MULTI-TRACE, SINGLE ACTOR\\
+\begin{itemize}
+  \item Which voxel is visited most (if any)?
+  \item 
+\end{itemize}
+
+MULTIPLE SIMULTANEOUS ACTORS\\
+\begin{itemize}
+  \item Do two actors paths intersect with an $n$-sized neighborhood?
+  \item 
+\end{itemize}
+
+% 17 NOV
 
 
 \end{document}
