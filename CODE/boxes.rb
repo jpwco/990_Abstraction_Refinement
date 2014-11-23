@@ -55,5 +55,3 @@ end
   [8.1,5.6,4.3],
   [0.1,8.1,6.2]
 ]
-@boxes = make_boxes(@partition_specs)
-@box_trace = map_to_boxes(@pos_trace, @boxes, @partition_specs, @volume_dimensions)
