@@ -34,7 +34,7 @@
 \rhead{Gerrard, Ore}
 \lfoot{Gerrard, Ore}
 \cfoot{\thepage\ of \pageref{LastPage}}
-\rfoot{17 November 2014}
+\rfoot{23 November 2014}
 \renewcommand{\headrulewidth}{0.4pt}
 \renewcommand{\footrulewidth}{0.4pt}
 
@@ -56,49 +56,62 @@
 %- - - - - - - - - - - - - - - - BEGIN DOCUMENT - - - - - - - - - - - - - - - - - - - 
 \begin{document}
 
-\textbf{FUNDAMENTALS}\\
-Time sequence
-$T =  \N \cup \{0\}, t \in T$
-
-Graph $G$
-
-
-Existence of box from trace point\\
-$p_t \rightarrow (b^i | b_{xyz\_min}^i \leq p_{xyz} < b_{xyx\_max}^i)$
-
-
-Existence of vertex from point\\
-$(p \rightarrow b^i) \rightarrow v^i$
-
-Existence of directed edge from consecutive points\\
-$((p_t \rightarrow b^i) \land (p_{t+1} \rightarrow b^j) \land (i \neq j)) \rightarrow e(v^i, v^j) $
+%\textbf{TYPES}\\
+Given:\\
+\begin{itemize}
+    \setlength\itemsep{0.2em}
+\item Time sequence $T =  \N \cup \{0\}, t \in T$\\
+\item Graph $G = (V,E)$
+\item S = $\mathbb{Z}^3$, with the identity equal to the size of the unit box.
+\item b = Box.  a unit cube in S 
+\item p = point in a trace 
+\end{itemize}
 
 
-Definition of Path\\
-$P ::  BOX, BOX \rightarrow \{0,1\}$\\
-$P(b_a, b_z) = 1 \Leftrightarrow (\exists v_i | e(v_a, v_i) \land \exists \land e(v_i, v_j) \land e(v_j, v_z)) $
+Existence of box from trace point - give a point in space in the trace with point properties $x,y,z$ 
+$$p_t \rightarrow (b_i | b_i^{xyz\_min} \leq p_t^{xyz} < b_i^{xyx\_max})$$
 
+Existence of vertex from point
+$$(p \rightarrow b_i) \rightarrow v_i, v_i \in V$$
+
+Existence of directed edge from consecutive points
+$$((p_t \rightarrow b_i) \land (p_{t+1} \rightarrow b_j) \land (i \neq j)) \rightarrow e(v_i, v_j) $$
+
+Definition of Path
+$$P ::  BOX, BOX \rightarrow \{0,1\}$$
+$$P(b_a, b_z) = 1 \Leftrightarrow (\exists v_i | e(v_a, v_i) \land \exists \land e(v_i, v_j) \land e(v_j, v_z)) $$
+
+Existence of turn
+$$p_t \rightarrow (b_i | b_i^{xyz\_min} \leq p_t^{xyz} < b_i^{xyx\_max})$$
 %$$3\ \ \ \ h \leftarrow max(max-list(conf-set[i]),max-list(past-fc[i]))$$
 
-
+\newpage
 \textbf{PROPERTIES}\\
 SINGULAR\\
 \begin{itemize}
 \item Can an actor return to its home?  There exists a path from $home$ to $home$.  
-  $$\exists P(b_{home}, b_{home}) \models a_{returnhome}$$ 
+  $$\phi_{\{returnhome\}} = \exists P(b_{home}, b_{home})$$
+  %$$\phi_{\{go,home\}} = \exists P(b_{home}, b_{home}) \models a_{returnhome}$$ 
 \item Can an actor move to multiple places? There exists a path from home to at least two places.
-  $$\exists (P(b_{home}, b_a), P(b_{home}, b_b)| b_a \neq b_a) \models a_{multiplePlaces}$$
+  $$\phi_{\{multiplePlaces\}} = \exists (P(b_{home}, b_a), P(b_{home}, b_b)| b_a \neq b_a)$$
 
-\item Does the trace have no repetition? For all paths, no destination is an origin.
-  $$\forall P(b_a, b_b), P(b_c, b_d), b_a \neq b_d \models a_{noRepetition}$$
+\item Does the trace have no repetition? For all edges in $G$, all destinations are different.
+  $$\phi_{\{noRepetition\}} = \forall e(v_a, v_b), e(v_c,v_d) in E, v_b \neq v_c, v_a \neq v_d$$
 
 \item Does an actor return to a box? There exists a path from a box to that same box.
-  $$\exists P_{ab}, P_{cd} | a = d \models a_{returns}$$
+  $$\phi_{\{pathCycle\}} = \exists P_{ab}, P_{cd} | a = d$$
 \item Can an actor teleport? Does there exist an edge from two `non adjacent boxes'  (Define adjacents?)
+  $$\phi_{\{teleport\}} = \exists  p_t, p_{t+1} | \lnot Adjacent(b_{p_t}, b_{p_{t+1}})$$
 \item Does an actor have a $n$ hot box? 
-\item Does an actor have a $n$ hot path? (pheremone)
-\item Can an actor back up?
+  $$\phi_{\{hotBoxOfSizeN\}} = \exists b_i, v_i \in E | n \geq |\{e \in E | e(v_x, v_i), v_x \in E\}$$
+  (Question : our graph can't capture multiple visits?)
+\item Does an actor have a $n$ hot path? (pheremone)\\
+  (Question : our graph can't capture multiple visits?)
+\item Can an actor move backwards?
+  $$\phi_{\{movebackwards\}} = $$
+  (Question : define directionality)
 \item What is the longest path in one continuous direction?
+  $$\phi_{\{\}} = $$
 \item Is the actor confined to a plane?
 \item what is the total number of visited voxels?
 \item path happens before another path
