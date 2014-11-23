@@ -11,6 +11,12 @@ def map_to_box ( pos, boxes, parts, dims )
   return box_index(boxes, coords)
 end
 
+def timestamp_map ( trace, box_trace )
+  hash = {}
+  box_trace.each_with_index { |box,i| hash[trace[i].time] = [box,trace[i].yaw] }
+  return hash
+end
+
 def pos_to_coords ( pos, parts, dims )
   coords = [lower_unit_bound(pos.x,parts.x,dims.x),
             lower_unit_bound(pos.y,parts.y,dims.y),

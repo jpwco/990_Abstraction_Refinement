@@ -11,6 +11,14 @@ class Array
     self[2]
   end
 
+  def yaw
+    self[3]
+  end
+
+  def time
+    self[4]
+  end
+
   def lower
     self[0]
   end
