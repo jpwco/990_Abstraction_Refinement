@@ -6,13 +6,15 @@ end
 
 def returns_home? ( box_trace )
   home = box_trace.first
-  box_trace.each_index.select { |i| (box_trace[i] == home) && (i>0) }
+  box_trace.each_index.select { |i| (box_trace[i] == home) && (i>0) && (box_trace[i-1] != home) }
 end
 
+# terribly inefficient...redo
 def revisit_map ( bt )
   revisit_map = {}
   rv_boxes = bt.select { |b| bt.count(b) > 1 }.uniq
-  rv_boxes.each { |b| revisit_map[b] = (bt.each_index.select{|i| bt[i]==b}) }
+  rv_boxes.each { |b| revisit_map[b] = (bt.each_index.select{|i| (bt[i]==b) && (i>0) && (bt[i-1]!=bt[i])}) }
+  revisit_map.delete_if { |key,value| value.size < 2 }
   return revisit_map
 end
 
