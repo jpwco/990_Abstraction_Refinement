@@ -25,10 +25,8 @@ def fuzzy_independence_table ( traces, boxes, bound_size )
     trace.each_with_index do |box_1, time_frame|
       traces.each_with_index do |other_trace, o_tr_id|
         box_2 = other_trace[time_frame]
-        unless tr_id == o_tr_id
+        unless ((box_1.nil? || box_2.nil?) || (tr_id == o_tr_id))
           if boundary_overlap?(boxes[box_1],boxes[box_2],boxes,bound_size)
-            puts "fuzzy independence violated by trace #{o_tr_id} at time #{time_fr
-ame}"
             fuzzy_ind_table[tr_id][o_tr_id] = false
           end
         end

@@ -6,6 +6,12 @@ def map_to_boxes ( pos_trace, boxes, parts, dims )
   return box_trace
 end
 
+def map_to_coords ( pos_trace, parts, dims )
+  coord_trace = []
+  pos_trace.each { |pos| coord_trace << pos_to_coords( pos, parts, dims ) }
+  return coord_trace
+end
+
 def map_to_box ( pos, boxes, parts, dims )
   coords = pos_to_coords(pos, parts, dims)
   return box_index(boxes, coords)
