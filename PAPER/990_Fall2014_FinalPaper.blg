@@ -1,0 +1,52 @@
+This is BibTeX, Version 0.99d (TeX Live 2013)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: 990_Fall2014_FinalPaper.aux
+The style file: ACM-Reference-Format-Journals.bst
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
+Database file #1: refs.bib
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Warning--empty publisher in fedorov1885elements
+Warning--empty address in fedorov1885elements
+You've used 1 entry,
+            5290 wiz_defined-function locations,
+            1225 strings with 14364 characters,
+and the built_in function-call counts, 962 in all, are:
+= -- 87
+> -- 20
+< -- 0
++ -- 6
+- -- 8
+* -- 42
+:= -- 104
+add.period$ -- 5
+call.type$ -- 1
+change.case$ -- 5
+chr.to.int$ -- 1
+cite$ -- 3
+duplicate$ -- 98
+empty$ -- 69
+format.name$ -- 8
+if$ -- 209
+int.to.chr$ -- 1
+int.to.str$ -- 0
+missing$ -- 5
+newline$ -- 41
+num.names$ -- 8
+pop$ -- 47
+preamble$ -- 1
+purify$ -- 10
+quote$ -- 0
+skip$ -- 23
+stack$ -- 0
+substring$ -- 77
+swap$ -- 7
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 14
+warning$ -- 2
+while$ -- 11
+width$ -- 0
+write$ -- 49
+(There were 2 warnings)

@@ -1,0 +1,156 @@
+% v2-acmsmall-sample.tex, dated March 6 2012
+% This is a sample file for ACM small trim journals
+%
+% Compilation using 'acmsmall.cls' - version 1.3 (March 2012), Aptara Inc.
+% (c) 2010 Association for Computing Machinery (ACM)
+%
+% Questions/Suggestions/Feedback should be addressed to => "acmtexsupport@aptaracorp.com".
+% Users can also go through the FAQs available on the journal's submission webpage.
+%
+% Steps to compile: latex, bibtex, latex latex
+%
+% For tracking purposes => this is v1.3 - March 2012
+
+\documentclass[prodmode,acmtecs]{acmsmall} % Aptara syntax
+
+
+% JPO ADDED PACKAGES
+\usepackage{epsfig}  
+\usepackage{amsmath} 
+\usepackage{amssymb} 
+%\usepackage{amsthm}  
+\usepackage{listings} 
+\usepackage{color}
+%\usepackage{enumerate}
+\usepackage{enumitem}
+\usepackage{multirow}
+\usepackage{lastpage}
+\usepackage{geometry}
+\usepackage{fancyhdr}
+\usepackage[all]{xy}
+\usepackage{wrapfig}
+\usepackage{listings}
+\usepackage{url}
+\usepackage{tikz}
+\usepackage{graphicx}
+%\usepackage{caption}
+%\usepackage{subcaption}
+\usepackage[justification=centering]{caption}
+\usetikzlibrary{arrows}
+\lstset{language=C, tabsize=4, basicstyle=\ttfamily}
+
+% JPO COMMANDS
+\newcommand\etal{\emph{et al.}}
+
+% Package to generate and customize Algorithm as per ACM style
+\usepackage[ruled]{algorithm2e}
+\renewcommand{\algorithmcfname}{ALGORITHM}
+\SetAlFnt{\small}
+\SetAlCapFnt{\small}
+\SetAlCapNameFnt{\small}
+\SetAlCapHSkip{0pt}
+\IncMargin{-\parindent}
+
+% Metadata Information
+\acmVolume{42}
+\acmNumber{42}
+\acmArticle{42}
+\acmYear{2014}
+\acmMonth{42}
+
+% Document starts
+\begin{document}
+
+% Page heads
+\markboth{M. Gerrand and J.P. Ore}{On Spatial Abstractions from Trace Data}
+
+% Title portion
+\title{On Spatial Abstractions from Trace Data}
+\author{MITCH GERRARD
+\affil{University of Nebraska}
+JOHN-PAUL ORE
+\affil{University of Nebraska}}
+% NOTE! Affiliations placed here should be for the institution where the
+%       BULK of the research was done. If the author has gone to a new
+%       institution, before publication, the (above) affiliation should NOT be changed.
+%       The authors 'current' address may be given in the "Author's addresses:" block (below).
+%       So for example, Mr. Abdelzaher, the bulk of the research was done at UIUC, and he is
+%       currently affiliated with NASA.
+
+\begin{abstract}
+The abstract goes here, usually written last.
+\end{abstract}
+
+\category{I.2.4}{Knowledge Representation Formalisms and Methods}{Representations (procedural and rule-based}
+
+\terms{Design, Algorithms}
+
+\keywords{Spatial Abstraction, Knowledge Representation}
+
+\acmformat{Mitch Gerrard, John-Paul Ore, 2014. On Spatial Abstractions from Trace Data.}
+% At a minimum you need to supply the author names, year and a title.
+% IMPORTANT:
+% Full first names whenever they are known, surname last, followed by a period.
+% In the case of two authors, 'and' is placed between them.
+% In the case of three or more authors, the serial comma is used, that is, all author names
+% except the last one but including the penultimate author's name are followed by a comma,
+% and then 'and' is placed before the final author's name.
+% If only first and middle initials are known, then each initial
+% is followed by a period and they are separated by a space.
+% The remaining information (journal title, volume, article number, date, etc.) is 'auto-generated'.
+
+\begin{bottomstuff}
+%This work is supported by the National Science Foundation, under
+%grant CNS-0435060, grant CCR-0325197 and grant EN-CS-0329609.
+
+Author's addresses: M. Gerrard and J.P. Ore, Computer Science and Engineering,
+University of Nebraska
+Lincoln, Nebraska, 68588. 
+\end{bottomstuff}
+
+\maketitle
+
+
+
+\input{intro}
+\input{motivation.tex}
+
+\input{method.tex}
+\input{experiments.tex}
+\input{relatedWork.tex}
+\input{conclusion.tex}
+
+
+% Figure EXAMPLE
+%\begin{figure}
+%\centerline{\includegraphics{acmsmall-mouse}}
+%\caption{Code before preprocessing.}
+%\label{fig:one}
+%\end{figure}
+
+
+
+% Acknowledgments
+\begin{acks}
+\end{acks}
+
+% Bibliography
+\bibliographystyle{ACM-Reference-Format-Journals}
+\bibliography{refs}
+                             % Sample .bib file with references that match those in
+                             % the 'Specifications Document (V1.5)' as well containing
+                             % 'legacy' bibs and bibs with 'alternate codings'.
+                             % Gerry Murray - March 2012
+
+% History dates
+%\received{February 2007}{March 2009}{June 2009}
+
+% Electronic Appendix
+%\elecappendix
+
+
+
+\end{document}
+% End of v2-acmsmall-sample.tex (March 2012) - Gerry Murray, ACM
+
+
