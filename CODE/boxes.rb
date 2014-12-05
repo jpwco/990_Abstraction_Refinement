@@ -56,14 +56,18 @@ end
 ###############
 
 # x,y,z axes will each be split into 10 parts
-@partition_specs   = [10,10,10]
-@volume_dimensions = [20,20,20]
+@parts   = [10,10,10]
+@dims = [20,20,20]
 
 # each position event as [x_pos,y_pos,z_pos]
-@pos_trace = [
+@pos = [
   [2.5,1.5,3.0], 
   [1.5,2.5,0.0],
   [5.2,5.8,2.1],
   [8.1,5.6,4.3],
+  [5.2,5.8,2.1],
+  [2.5,1.5,3.0], 
   [0.1,8.1,6.2]
 ]
+
+@boxes = make_boxes(@parts)
