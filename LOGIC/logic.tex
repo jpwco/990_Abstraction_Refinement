@@ -80,6 +80,8 @@ $$((p_t \rightarrow b_i) \land (p_{t+1} \rightarrow b_j) \land (i \neq j)) \righ
 Definition of Path
 $$P ::  BOX, BOX \rightarrow \{0,1\}$$
 $$P(b_a, b_z) = 1 \Leftrightarrow (\exists v_i | e(v_a, v_i) \land \exists \land e(v_i, v_j) \land e(v_j, v_z)) $$
+$$P(b_a, b_z) = 1 \Leftrightarrow (\exists P(b_a, e_{a\_i}, b_i, \dots b_j, e_{j\_z}, b_z)) $$
+
 
 Existence of turn
 $$p_t \rightarrow (b_i | b_i^{xyz\_min} \leq p_t^{xyz} < b_i^{xyx\_max})$$
