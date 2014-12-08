@@ -7,3 +7,23 @@ PROPERTY & FORMALISM \\ \hline
 Teleports &  $\phi_{\{teleport\}} = \exists  p_t, p_{t+1} | \lnot Adjacent(b_{p_t}, b_{p_{t+1}})$ \\ \hline
 Hot Box & $\phi_{\{hotBoxOfSizeN\}} = \exists b_i, v_i \in E | n \geq |\{e \in E | e(v_x, v_i), v_x \in E\}$ \\ \hline
 \end{tabular}
+
+Method:
+\begin{itemize}
+ \item partition space into boxes
+ \item enumerate the boxes
+ \item map a concrete positional trace through space onto its uniquely corresponding boxes
+ \item sync time frames of box-traces to infer spatio-temporal properties
+ \item using the spatio-temporal box-trace, derive properties (given elsewhere)
+\end{itemize}
+
+\emph{Selecting appropriate box size}
+
+Different box sizes may generate very different properties.
+
+\emph{Too small of a box} If you choose the boxes to be relatively small, the trace may show a teleport, which we define as a spatially disconnected box-trace.
+If there are gaps of disconnected boxes, and two entities collide in the unaccounted for space, the violation of box-independence will not be inferred.
+
+\emph{Too big of a box} If you choose the boxes to be relatively large, this may be too rough of an over approximation.
+For an extreme example, an entity never registers "leaving home" if its initial box is the size of the given dimensions.
+Sometimes large over-approximations are desired, such as if you only want to examine the movements across two ``hemispheres" of an entity's space.
