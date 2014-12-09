@@ -1,12 +1,45 @@
 \section{Method}
 \label{sec:method}
 
+
+Foundations \\
 \begin{tabular}{| p{2.8cm} | p{11.5cm} | }
 \hline
 PROPERTY & FORMALISM \\ \hline
-Teleports &  $\phi_{\{teleport\}} = \exists  p_t, p_{t+1} | \lnot Adjacent(b_{p_t}, b_{p_{t+1}})$ \\ \hline
+Existence of Box from point & $$p_t \rightarrow (b_i | b_i^{xyz\_min} \leq p_t^{xyz} < b_i^{xyx\_max})$$ \\ \hline
+Existence of Vertex from Point & $$(p \rightarrow b_i) \rightarrow v_i, v_i \in V$$ \\ \hline
+Existence of directed edge from consecutive points & $$((p_t \rightarrow b_i) \land (p_{t+1} \rightarrow b_j) \land (i \neq j)) \rightarrow e(v_i, v_j) $$  \\ \hline
+ & \\ \hline
+ & \\ \hline
+ & \\ \hline
+ & \\ \hline
+ & \\ \hline
+\end{tabular}
+
+Properties of Singular Actors \\
+\begin{tabular}{| p{2.8cm} | p{11.5cm} | }
+\hline
+PROPERTY & FORMALISM \\ \hline
+Move to multiple places & $\phi_{\{multiplePlaces\}} = \exists (P(b_{home}, b_a), P(b_{home}, b_b)| b_a \neq b_a)$ \\ \hline
+Returns Home & $\phi_{\{returnhome\}} = \exists P(b_{home}, b_{home})$ \\ \hline
+No repetition & $\phi_{\{noRepetition\}} = \forall e(v_a, v_b), e(v_c,v_d) in E, v_b \neq v_c, v_a \neq v_d$ \\ \hline
+ & \\ \hline
+ & \\ \hline
+ & \\ \hline
+$\phi_{\{teleport\}}$ & $  \exists  p_t, p_{t+1} | \lnot Adjacent(b_{p_t}, b_{p_{t+1}})$ \\ \hline
 Hot Box & $\phi_{\{hotBoxOfSizeN\}} = \exists b_i, v_i \in E | n \geq |\{e \in E | e(v_x, v_i), v_x \in E\}$ \\ \hline
 \end{tabular}
+
+
+Properties of Multiple Actors \\
+\begin{tabular}{| p{2.8cm} | p{11.5cm} | }
+\hline
+PROPERTY & FORMALISM \\ \hline
+ & \\ \hline
+ & \\ \hline
+ & \\ \hline
+\end{tabular}
+
 
 Method:
 \begin{itemize}
