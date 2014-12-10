@@ -133,8 +133,10 @@
     \setlength\paperwidth  {\@tempdima}}
 \fi
 
-\DeclareOption{oneside}{\@twosidefalse \@mparswitchfalse}
-\DeclareOption{twoside}{\@twosidetrue  \@mparswitchtrue}
+\DeclareOption{oneside}{\@twosidetrue \@mparswitchtrue}
+\DeclareOption{twoside}{\@twosidefalse  \@mparswitchfalse}
+%\DeclareOption{oneside}{\@twosidefalse \@mparswitchfalse}
+%\DeclareOption{twoside}{\@twosidetrue  \@mparswitchtrue}
 
 \DeclareOption{final}{\setlength\overfullrule{0pt}}
 
