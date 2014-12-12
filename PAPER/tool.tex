@@ -1,6 +1,11 @@
 \section{Description of Tool}
 \label{sec:tool}
 
+In this section, we describe the implementation of our tool for reasoning about spatial properties.
+In the previous section, we used the language of \emph{cubes} to discuss the general methodology. 
+In discussing the tool, we use the language of \emph{boxes}, \emph{box traces} and \emph{box sizes} as a way to differentiate the theory from the concrete implementation, which differ in small ways.
+Our tool, written in Ruby, will take trace files, a box size, and bounding dimensions as input, and will return a set of spatial-temporal properties inferred from the traces.  
+
 \begin{figure}[ht]
   \centering
   \includegraphics[width=0.95\textwidth]{./figures/workflow}
@@ -8,10 +13,7 @@
   \label{fig:workflow}
 \end{figure}
 
-% since we're considering cubes we only need a desired cube size, no need for partitions
-Our tool will take trace files, a cube size, and bounding dimensions as input, and will return a set of spatial-temporal properties inferred from the traces.  
-
- This description elaborates on the high-level workflow diagram.
+This description elaborates on the high-level workflow diagram as shown in Fig.~\ref{fig:workflow}.
 The trace files will be one or more .bag files.  
 A bag is the file format used by the Robot Operating System (ROS) for storing ROS message data.  
 Via messages, various sensors can write their values to these bags during an execution. 
@@ -24,13 +26,13 @@ We first convert the .bag files to .csv files with four columns which contain a 
 
 The cube size is given as a single positive floating-point integer, representing the desired length of the cube edge in meters.
 The bounding dimensions are given as a 3-tuple of positive floating-point integers, representing the bounds of the space in which the actors move.
-Given the cube size, we map the position of each time frame of a single trace to the box corresponding to its position in $R^3$.
+Given the cube size, we map the position of each time frame of a single trace to the box corresponding to its position in \rthree.
  This produces a total ordering of abstracted trace positions given as a succession of boxes, which we will call a box-trace.
  
  Additionally, you need to set a flag to indicate if the input deals with a single actor or multiple actors.
  
- Based on a set of box-traces, we will check if certain properties hold.
- For example, if a trace starts out in "box 3," moves to other boxes, and occupies "box 3" at a later time, then the return home property would be set to true.
+% Based on a set of box-traces, we will check if certain properties hold.
+% For example, if a trace starts out in "box 3," moves to other boxes, and occupies "box 3" at a later time, then the return home property would be set to true.
  
  The output will be a set of one or more truth tables corresponding to a subset of the properties discussed in methods.
  The format of these truth tables is also discussed in methods.
@@ -38,9 +40,7 @@ Given the cube size, we map the position of each time frame of a single trace to
  
  For many of the above properties, it will be important to know specific details of violated properties (which box, which time frame, etc.); these details are being stored but we are currently only outputting binary truth values. 
  
- % to go in methods section?
- Let there be $m$ properties.
- If we are considering a single actor, the truth table will just be one row with $m$ columns containing the truth value of the corresponding property.
+ If we are considering a single actor, given $m$ properties, the truth table will just be one row with $m$ columns containing the truth value of the corresponding property.
  If we are considering $n$ multiple actors, the output will be $m$ truth tables which are either $1 \times n$ or $n \times n$ matrices, depending on the property considered.
  For example, the returns home property only depends on a single actor, not their interactions, so the table will be a $1 \times n$ matrix with the truth value of each actor.
  But a property like box-independence considers interactions between all the actors, and so its truth table will be a $n \times n$ matrix with the truth value for box-independence between $(box_i,box_j)$ for all $1 \leq i,j \leq n$.
