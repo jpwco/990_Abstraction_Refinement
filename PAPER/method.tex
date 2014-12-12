@@ -17,7 +17,7 @@ Let the $i$th element of the trace file be designated $\bigstar_i$, and to the p
 $$\bigstar_i \Rightarrow (\cube_i | \cube_{xyz\in \mathbb{N}} = f_{\cube}(\bigstar_{xyz})$$ 
 
 This maps every record in the trace file to a cube.
-\eb{Simultaneously}, we create a root node $v_i$ in a graph $G = (V,E)$.
+\eb{Simultaneously}, we create a root node $v_i$ in a directed multigraph $G = (V,E)$.
 For each subsequence trace record $\bigstar_{i+1}$, we check if this position maps to the same cube, $\cube_i$, or to a new cube, $\cube_{j}.$
 If a record maps to a new cube $\cube_{j}$, then we add a directed edge to $E$ from $v_i$ to $v_{j}$.  
 We add a label the edge $(v_i, v_j)$ with the time $t$.
@@ -37,10 +37,11 @@ We are now ready to begin reasoning about properties.
 \begin{tabular}{| p{2.8cm} | p{11.5cm} | }
 \hline
 PROPERTY & FORMALISM \\ \hline
-Move to multiple places & $\phi_{\{multiplePlaces\}} = \exists (P(b_{home}, b_a), P(b_{home}, b_b)| b_a \neq b_a)$ \\ \hline
+% Move to multiple places & $\phi_{\{multiplePlaces\}} = \exists (P(b_{home}, b_a), P(b_{home}, b_b)| b_a \neq b_a)$ \\ \hline
+Move to multiple places & $\phi_{\{multiplePlaces\}} = |V| > 1$ \\ \hline
 Returns Home & $\phi_{\{returnhome\}} = \exists P(b_{home}, b_{home})$ \\ \hline
 No repetition & $\phi_{\{noRepetition\}} = \forall e(v_a, v_b), e(v_c,v_d) in E, v_b \neq v_c, v_a \neq v_d$ \\ \hline
- & \\ \hline
+ Loiters & $\phi_{\{loiters\}} =  \exists e \in E$ such that $e[time] - e_{prev}[time] > k$, where $k$ is time bound \\ \hline
  & \\ \hline
  & \\ \hline
 $\phi_{\{teleport\}}$ & $  \exists  p_t, p_{t+1} | \lnot Adjacent(b_{p_t}, b_{p_{t+1}})$ \\ \hline
@@ -52,8 +53,8 @@ Hot Box & $\phi_{\{hotBoxOfSizeN\}} = \exists b_i, v_i \in E | n \geq |\{e \in E
 \begin{tabular}{| p{2.8cm} | p{11.5cm} | }
 \hline
 PROPERTY & FORMALISM \\ \hline
- & \\ \hline
- & \\ \hline
+ Crumb independence (given graphs of $n$ actors)& $\phi_{\{crumbInd\}} =  V_1 \cap \ldots \cap V_n = \emptyset $ \\ \hline
+ Following crumbs & $\phi_{\{following\}} =  \exists E' \subset E_1 \land E'' \subset E_2$ such that $path(E')=path(E'') $  \\ \hline
  & \\ \hline
 \end{tabular}
 
