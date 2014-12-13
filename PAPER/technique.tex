@@ -11,7 +11,7 @@ Let trace T be indexed by $i$ so that $T_i$ is the $i$th time-ordered record in 
 We call the thing that is moving an \eb{actor}, designated by $\bigstar$.
 
 Let there exist a space $C^3 \equiv \mathbb{Z}^3$ called ``cube 3".
-We denote two functions: $f_{cube}$ for mapping from a trace record $T_i$ and $f_{node}$ that maps from $T_i$ to a node in a graph $G$. The symbol $\alpha$ scales positions from the original unit of measure to the size of the unit cube (See Sect~\ref{sec:tools} for discussion of choosing the size of the unit cube).
+We denote two functions: $f_{cube}$ for mapping from a trace record $T_i$ and $f_{node}$ that maps from $T_i$ to a node in a graph $G$. The symbol $\alpha$ scales positions from the original unit of measure to the size of the unit cube (See Sect~\ref{sec:tool} for discussion of choosing the size of the unit cube).
 
 $$f_{cube}(T_i = (t,x,y,z)) = (\lfloor \alpha * x \rfloor, \lfloor \alpha * y \rfloor , \lfloor \alpha * z \rfloor ) = cube_i$$
 
@@ -79,6 +79,12 @@ PROPERTY & FORMALISM \\ \hline
 \subsection{Properties of Paths}
 \subsubsection{The Ratio Cube}
 
+\begin{wrapfigure}{l}{0.3\textwidth}
+  \centering
+    \includegraphics[width=0.3\textwidth]{./figures/ratioCube_3_4}
+      \caption{The ratio cube.}
+      \label{fig:ratioCube}
+\end{wrapfigure}
 In order to compare multiple path, we consider for each path $P$ a method of counting how many times an actor moves in each direction.  
 In our model, there are six directions: up, down, left, right, forward, back, and we assign a counter to each.
 We then compare the ratios of the counters, and use this ratio as a way of comparing multiple paths.
@@ -90,46 +96,39 @@ Figures~\ref{fig:3by4}-\ref{fig:6by8_squiggle} show ratio equivalent paths, that
 These ratios are invariant under transformation by scale, and two paths that make the same ratio of moves in any order are likewise equivalent.
 
 
-
-
-\begin{wrapfigure}{l}{0.49\textwidth}
+\begin{figure}
+\centering
+  \begin{minipage}[t]{.45\textwidth}
   \centering
-  \includegraphics[width=0.48\textwidth]{./figures/ratioCube_3_4}
-		\caption{The ratio cube.}
-		\label{fig:ratioCube}
-\end{wrapfigure}
-\begin{wrapfigure}{r}{0.49\textwidth}
-  \centering
-  \includegraphics[width=0.48\textwidth]{./figures/3by4}
-    \caption{Path with ratio $a:b = 3:4$}
+  \includegraphics[width=0.9\textwidth]{./figures/3by4}
+    \caption{A path with ratio $a:b = 3:4$}
 		\label{fig:3by4}
-\end{wrapfigure}
-
-
-\begin{wrapfigure}{l}{0.5\textwidth}
+  \end{minipage}
+  \begin{minipage}[t]{.45\textwidth}
   \centering
-  \includegraphics[width=0.5\textwidth]{./figures/6by8}
+  \includegraphics[width=0.9\textwidth]{./figures/6by8}
     \caption{Another path with ratio $a:b = 3:4$}
-		\label{fig:6by8}
-\end{wrapfigure}
-\begin{wrapfigure}{r}{0.5\textwidth}
+    \label{fig:6by8}
+  \end{minipage}\hfill
+  \begin{minipage}[t]{.45\textwidth}
   \centering
-  \includegraphics[width=0.5\textwidth]{./figures/6by8_squiggle}
+  \includegraphics[width=0.9\textwidth]{./figures/6by8_squiggle}
     \caption{Alternate path also with ratio $a:b = 3:4$}
 		\label{fig:6by8_squiggle}
-\end{wrapfigure}
+  \end{minipage}
+  \begin{minipage}[t]{.45\textwidth}
+  \centering
+  \includegraphics[width=0.9\textwidth]{./figures/3by4_upended.png}
+  \caption{Cube with $a:b=3:4$ equivalent path after rotational transformation.}
+  \label{fig:3by4_upended}
+  \end{minipage}\hfill
+\end{figure}
 
     
 
 The ratio cube is fixed relative to the orientation of the axis, but there are 24 rotational symmetries for a cube.
 Therefore given the ratio cubes for two paths $P_1$ and $P_2$, if path equivalence exists within some symmetry we can search this space and find, for example, other ratio equivalent paths as shown in Fig.~\ref{fig:3by4_upended}.
 
-\begin{wrapfigure}{r}{0.5\textwidth}
-  \centering
-  \includegraphics[width=0.5\textwidth]{./figures/3by4_upended.png}
-  \caption{Cube with $a:b=3:4$ equivalent path after transformation.}
-  \label{fig:3by4_upended}
-\end{wrapfigure}
 
 
 Method:
