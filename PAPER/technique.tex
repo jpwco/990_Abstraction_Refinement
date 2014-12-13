@@ -63,7 +63,7 @@ Hot Box & $\phi_{\{hotBoxOfSizeN\}} = \exists b_i, v_i \in E | n \geq |\{e \in E
 \begin{tabular}{| p{2.8cm} | p{11.5cm} | }
 \hline
 PROPERTY & FORMALISM \\ \hline
- Crumb independence (given graphs of $n$ actors)& $\phi_{\{crumbInd\}} =  i,j \in \{1..n\} \land i \neq j \rightarrow V_i \cap V_j = \emptyset $ \\ \hline
+ Crumb independence (given graphs of $n$ actors)& $\phi_{\{crumbInd\}} =  \forall V_i,V_j \in V, i \neq j \rightarrow V_i \cap V_j = \emptyset $ \\ \hline
  Following crumbs & $\phi_{\{following\}} =  \exists E' \subset E_1 \land E'' \subset E_2$ such that $path(E')=path(E'') $  \\ \hline
 % not sure how to do these formulas in a nice way with graphs yet
 % these are only for two entities
@@ -131,22 +131,22 @@ Therefore given the ratio cubes for two paths $P_1$ and $P_2$, if path equivalen
 
 
 
-Method:
-\begin{itemize}
- \item partition space into boxes
- \item enumerate the boxes
- \item map a concrete positional trace through space onto its uniquely corresponding boxes
- \item sync time frames of box-traces to infer spatio-temporal properties
- \item using the spatio-temporal box-trace, derive properties (given elsewhere)
-\end{itemize}
+%Method:
+%\begin{itemize}
+ %\item partition space into boxes
+ %\item enumerate the boxes
+ %\item map a concrete positional trace through space onto its uniquely corresponding boxes
+ %\item sync time frames of box-traces to infer spatio-temporal properties
+ %\item using the spatio-temporal box-trace, derive properties (given elsewhere)
+%\end{itemize}
 
-\emph{Selecting appropriate box size}
+%\emph{Selecting appropriate box size}
 
-Different box sizes may generate very different properties.
+%Different box sizes may generate very different properties.
 
-\emph{Too small of a box} If you choose the boxes to be relatively small, the trace may show a teleport, which we define as a spatially disconnected box-trace.
-If there are gaps of disconnected boxes, and two entities collide in the unaccounted for space, the violation of box-independence will not be inferred.
+%\emph{Too small of a box} If you choose the boxes to be relatively small, the trace may show a teleport, which we define as a spatially disconnected box-trace.
+%If there are gaps of disconnected boxes, and two entities collide in the unaccounted for space, the violation of box-independence will not be inferred.
 
-\emph{Too big of a box} If you choose the boxes to be relatively large, this may be too rough of an over approximation.
-For an extreme example, an entity never registers "leaving home" if its initial box is the size of the given dimensions.
-Sometimes large over-approximations are desired, such as if you only want to examine the movements across two ``hemispheres" of an entity's space.
+%\emph{Too big of a box} If you choose the boxes to be relatively large, this may be too rough of an over approximation.
+%For an extreme example, an entity never registers "leaving home" if its initial box is the size of the given dimensions.
+%Sometimes large over-approximations are desired, such as if you only want to examine the movements across two ``hemispheres" of an entity's space.
