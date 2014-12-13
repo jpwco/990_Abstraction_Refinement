@@ -1,10 +1,8 @@
 \section{Introduction}
 
-The world is full of moving things.
-Increasingly, because of sensors like GPS, we know where things move and when they moved there.  
-This data is useful for revealing properties of the thing's movement: like \emph{how fast did it move?} or \emph{how far did it travel?}
-Further, this data can be used to describe aggregate properties, like how many cars drive on the road by my house?
-This kind of analysis has been very fruitful because it allows us to understand something about what happened.
+The world is full of moving things, and increasingly, things know where they are. 
+Ubiquitous sensor technologies, like GPS, combined with networked storage enables us to continually detect and archive spatial movement.
+These myriad data points can answer questions of great value, including geospatial distributions, trends and traffic flows, popular restaurants, migration patterns and much more.
 
 \begin{wrapfigure}{l}{0.33\textwidth}
   \centering
@@ -13,15 +11,19 @@ This kind of analysis has been very fruitful because it allows us to understand 
   \label{fig:unitCubes}
 \end{wrapfigure}
 
-However, analyzing this data can be hard because there are an overwhelming number of data points.
-Also is can be very difficult to examine higher-level relationships because points and lines are overly specific.  
+However, we can be overwhelmed because we are ``drowning in data"~\cite{morse1993drowning}.
+Further, it can be difficult to examine high-level relationships because points and lines are specific; the story is at the level of the forest and we can only see the trees.  
 Often it is only feasible to analyze large data sets by choosing an appropriate level of abstraction.
-This work is about one such kind of abstraction, a spatial abstraction where particular points in space-time are mapped to unit cubes, as shown in Fig.~\ref{fig:unitCubes}.
-Using techniques inspired by software analysis, specifically Daikon invariants~\cite{kataoka2001automated}, we explore the properties of movement of things at a higher level, and the relationships between these properties.
+The work presented here is about one such kind of abstraction.
+We consider a ``spatial abstraction" where particular points in space-time are mapped to unit cubes, as shown in Fig.~\ref{fig:unitCubes}.
+Using techniques inspired by software analysis, specifically Daikon invariants~\cite{kataoka2001automated}, we use trace data gathered as an object moves and explore the properties of movement of things at a higher level.
 
-We explore what properties exist within this abstraction and how these properties can be used to reason about how one or more things moved in time.
+In this paper, we set forth our technique for abstracting away from particular points, 
+implement our technique in a prototype tool, ``FuzzyCubicCrumbTeleportation", 
+collect real movement data from a small flying robot, 
+and validate our tools' ability to detect spatial properties on one or more actors.
 
-This paper is organized as follows:
+The paper is organized as follows:
 Section~\ref{sec:background} gives an overview of both spatial analysis and the Daikon invariants analysis tool;
 Section~\ref{sec:method} describes the method of spatial abstraction, including defining terms and a table of formalized properties;
 Section~\ref{sec:tool} provides an overview of our tool that implements this method of analysis;
