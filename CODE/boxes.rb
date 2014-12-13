@@ -3,7 +3,7 @@ load 'aliases.rb'
 def map_to_boxes ( pos_trace, cube_size, dims )
   box_trace = []
   new_dims = cube_dims(cube_size,dims)
-  parts = cube_parts(cube_size,dims)
+  parts = cube_parts(cube_size,new_dims)
   boxes = make_boxes(parts)
   pos_trace.each { |pos| box_trace << map_to_box( pos, boxes, parts, new_dims ) }
   return box_trace
