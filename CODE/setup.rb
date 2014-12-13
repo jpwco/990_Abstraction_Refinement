@@ -41,7 +41,7 @@ load 'properties.rb'
 ]
 
 @boxes = make_boxes(@partition_specs)
-@bt1 = map_to_boxes(@pos_trace, @partition_specs, @volume_dimensions)
+@bt1 = map_to_boxes(@pos_trace, 2, @volume_dimensions)
 @bt2 = [100, 11, 221, 421, 44]
 @bt3 = [1, 400, 10, 22, 418]
 @bt4 = [999,999,999,999,999]

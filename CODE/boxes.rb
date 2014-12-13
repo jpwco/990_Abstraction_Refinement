@@ -1,9 +1,11 @@
 load 'aliases.rb'
 
-def map_to_boxes ( pos_trace, parts, dims )
+def map_to_boxes ( pos_trace, cube_size, dims )
   box_trace = []
+  new_dims = cube_dims(cube_size,dims)
+  parts = cube_parts(cube_size,dims)
   boxes = make_boxes(parts)
-  pos_trace.each { |pos| box_trace << map_to_box( pos, boxes, parts, dims ) }
+  pos_trace.each { |pos| box_trace << map_to_box( pos, boxes, parts, new_dims ) }
   return box_trace
 end
 
@@ -50,6 +52,17 @@ def make_boxes ( parts )
   p_array = parts.map { |p| unit_array(p) }
   boxes = p_array.x.product(p_array.y,p_array.z)
   return boxes
+end
+
+def cube_dims ( cube_size, dims )
+  new_dims = []
+  rough_parts = dims.map { |dim| dim/cube_size.to_f }
+  rough_parts.each { |rp| (rp%1 == 0) ? new_dims << rp*cube_size : new_dims << (rp.to_i+1)*cube_size }
+  return new_dims
+end
+
+def cube_parts ( cube_size, dims )
+  dims.map { |d| (d/cube_size).to_i }
 end
 
 ###############
