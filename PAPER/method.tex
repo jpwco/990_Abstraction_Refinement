@@ -55,7 +55,14 @@ Hot Box & $\phi_{\{hotBoxOfSizeN\}} = \exists b_i, v_i \in E | n \geq |\{e \in E
 PROPERTY & FORMALISM \\ \hline
  Crumb independence (given graphs of $n$ actors)& $\phi_{\{crumbInd\}} =  i,j \in \{1..n\} \land i \neq j \rightarrow V_i \cap V_j = \emptyset $ \\ \hline
  Following crumbs & $\phi_{\{following\}} =  \exists E' \subset E_1 \land E'' \subset E_2$ such that $path(E')=path(E'') $  \\ \hline
- & \\ \hline
+% not sure how to do these formulas in a nice way with graphs yet
+% these are only for two entities
+ Above & $T_1[i].z > T_2[i].z \forall i$ where $i$ is indexing a time interval\\ \hline
+ Below & $T_1[i].z < T_2[i].z \forall i$ where $i$ is indexing a time interval\\ \hline
+ Front & $T_1[i].x > T_2[i].x \forall i$ where $i$ is indexing a time interval\\ \hline
+ Behind & $T_1[i].x < T_2[i].x \forall i$ where $i$ is indexing a time interval\\ \hline
+ Right & $T_1[i].y < T_2[i].y \forall i$ where $i$ is indexing a time interval \\ \hline
+ Left & $T_1[i].z < T_2[i].z \forall i$ where $i$ is indexing a time interval \\ \hline
 \end{tabular}
 
 \subsection{The Ratio Cube}
