@@ -1,20 +1,20 @@
 \section{Background}
 \label{sec:background}
 
-\jp{This section is pretty much stream of consciousness}
+Many people conceive of space in the manner of Descartes, where a fixed world frame with three perpendicual axis identify an exact position at any point.  
+Yet more sophisticated observers follow Minkovsky~\cite{minkowski1952space} and imagine curvature in space time.
+We're interested in a coarsening of these perspectives, imaging the universe cut into regular stacks of identical boxes, akin to an occupancy grid~\cite{moravec1985high}, or to use more technical terms, a tessellation of \rthree by a unit cuboid.
 
-Things exists in spatial and temporal relation to one another.
-Many people conceive of space following in the manner of Descartes, where there is a fixed world frame and objects exists at a point in $R^3$.
-For example, given a world frame centered directly under your feet, a point in your thumb might be described as $p_{thumb} = (x,y,z) = (0.2m, 0.3m, 0.4m)$.
-As your thumb moves, the Cartesian coordinates describing this point take on different values over time.
-If we consider some interval, $\delta t$, the set of all positions of $p_{thumb} = P$ describes the movement of this point during $\delta t$.
+%For example, given a world frame centered directly under your feet, a point in your thumb might be described as $p_{thumb} = (x,y,z) = (0.2m, 0.3m, 0.4m)$.
+%As your thumb moves, the Cartesian coordinates describing this point take on different values over time.
+%If we consider some interval, $\delta t$, the set of all positions of $p_{thumb} = P$ describes the movement of this point during $\delta t$.
 
-However, with real systems in the world there are at least two limitations to $P$: $P$ is a finite sequence of points, and any $p \in P$ is uncertain with a quantifiable confidence.
-Let's denote $P'$ as a finite, uncertain version of $P$.
-Because $P'$ is uncertain, we can over-approximate the set of position points of our thumb by considering a kind of box, a bounding cubic volume defined by a set of 8 points, $v = {a,b,c,d,e,f,g,h}$.
-This over-approximation is useful because we can then imagine the box moving in space and if the box never intersects with an obstacle during a movement, they we can move our thumb as we imagined and know that we won't have any collisions.
+%However, with real systems in the world there are at least two limitations to $P$: $P$ is a finite sequence of points, and any $p \in P$ is uncertain with a quantifiable confidence.
+%Let's denote $P'$ as a finite, uncertain version of $P$.
+%Because $P'$ is uncertain, we can over-approximate the set of position points of our thumb by considering a kind of box, a bounding cubic volume defined by a set of 8 points, $v = {a,b,c,d,e,f,g,h}$.
+%This over-approximation is useful because we can then imagine the box moving in space and if the box never intersects with an obstacle during a movement, they we can move our thumb as we imagined and know that we won't have any collisions.
 
-This kind of over-approximation is used in robot planning to reason about collision-free trajectories, specifically, planning into the future.
+This kind of coarsening is used in robot planning to reason about collision-free trajectories, specifically, planning into the future~\cite{siegwart2011introduction}.
 
 In this paper, we're considering a similar over-approximation, or abstraction, of the position of some \emph{actor}, the thing that moves, within space, 
 The key difference is that we consider properties of spatial abstractions that happened in the past, instead of the future.
@@ -22,7 +22,7 @@ To do this, we adopt a very successful methodology from software engineering and
 Daikon uses a record of what happened during the execution of a program, called a \emph{program trace}, to analyze high-level properties of software behavior.
 We consider a \emph{spatial trace}, a finite time sequence of positions, and try to reason about higher-level properties of the movement.
 
-If we could record, or write down, a sequence of point 
-Increasingly, our world is full of things that know where they are in space.
-Some of these things can move in space and we created them and they move based on rules we design.
+%If we could record, or write down, a sequence of point 
+%Increasingly, our world is full of things that know where they are in space.
+%Some of these things can move in space and we created them and they move based on rules we design.
 
