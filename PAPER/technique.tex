@@ -106,14 +106,16 @@ Informally, the above properties correspond to the following descriptions.
 PROPERTY & DEFINITION \\ \hline
  Independence& $\phi_{\{independence\}} =  \forall V_i,V_j \in V, i \neq j \rightarrow V_i \cap V_j = \emptyset $ \\ \hline
  Following & $\phi_{\{following\}} =  \exists E' \subset E_1 \land E'' \subset E_2$ s.t. $P(E')=P(E'') $  \\ \hline
+ Dense Space & $\phi_{\{dense\}} = \exists S \subset Cube^3$ s.t. $> k \bigstar$'s occupy $S$ at time $t$\\ \hline
+ Sparse Space & $\phi_{\{sparse\}} = \exists S \subset Cube^3$ s.t. $< k \bigstar$'s occupy $S$ at time $t$\\ \hline
 % not sure how to do these formulas in a nice way with graphs yet
 % these are only for two entities
- Above & $T_1[i].z > T_2[i].z \forall i$ where $i$ is indexing a time interval\\ \hline
- Below & $T_1[i].z < T_2[i].z \forall i$ where $i$ is indexing a time interval\\ \hline
- Front & $T_1[i].x > T_2[i].x \forall i$ where $i$ is indexing a time interval\\ \hline
- Behind & $T_1[i].x < T_2[i].x \forall i$ where $i$ is indexing a time interval\\ \hline
- Right & $T_1[i].y < T_2[i].y \forall i$ where $i$ is indexing a time interval \\ \hline
- Left & $T_1[i].z < T_2[i].z \forall i$ where $i$ is indexing a time interval \\ \hline
+ Above & $\phi_{\{above\}} =  T_1[i].z > T_2[i].z \forall i$ where $i$ is indexing a time interval\\ \hline
+ Below & $\phi_{\{below\}} = T_1[i].z < T_2[i].z \forall i$ where $i$ is indexing a time interval\\ \hline
+ Front & $\phi_{\{front\}} = T_1[i].x > T_2[i].x \forall i$ where $i$ is indexing a time interval\\ \hline
+ Behind & $\phi_{\{behind\}} = T_1[i].x < T_2[i].x \forall i$ where $i$ is indexing a time interval\\ \hline
+ Right & $\phi_{\{right\}} = T_1[i].y < T_2[i].y \forall i$ where $i$ is indexing a time interval \\ \hline
+ Left & $\phi_{\{left\}} = T_1[i].z < T_2[i].z \forall i$ where $i$ is indexing a time interval \\ \hline
 \end{tabular}
 
 Informally, the above properties correspond to the following descriptions.
