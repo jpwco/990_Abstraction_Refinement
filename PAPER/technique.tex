@@ -125,9 +125,9 @@ A visual representation of these counters and the ratio between faces is shown i
 As shown in the figure, the number of moves in each direction is associated with a face of the ratio cube, and the ratios between the directions is associated with the edges of the cube.
 
 
-Figs~\ref{fig:3by4}-\ref{fig:6by8} show ratio equivalent paths, that is, the ratio of the number of moves made in each of the size directions is the same.
+Figs.~\ref{fig:3by4}-\ref{fig:6by8} show ratio equivalent paths, that is, the ratio of the number of moves made in each of the size directions is the same.
 Note than these ratios are invariant under transformation by scale.
-Fig.~\ref{fig:6by8_squiggle} shows two paths that make the same ratio of moves in any order are likewise equivalent.
+Fig.~\ref{fig:6by8_squiggle} depicts a path that make the same ratio of moves in a different order, and therefore all paths with identical ratios in the edge cube are likewise path ratio equivalent.
 
 
 \begin{figure}
@@ -159,9 +159,12 @@ Fig.~\ref{fig:6by8_squiggle} shows two paths that make the same ratio of moves i
 \end{figure}
 
     
+An interesting case is exhibited in Fig.~\ref{fig:3by4_upended}, where the ratio is the same but along another edge.
+We consider this path to be \emph{rotationally} ratio equivalent to the paths in Figs.\ref{fig:3by4}-\ref{fig:6by8_squiggle}a.
+There are 24 rotational symmetries for a cube (one is the identity), so searching for ratio equivalence given two paths is tractable.
 
-The ratio cube is fixed relative to the orientation of the axis, but there are 24 rotational symmetries for a cube.
-Therefore given the ratio cubes for two paths $P_1$ and $P_2$, if path equivalence exists within some symmetry we can search this space and find, for example, other ratio equivalent paths as shown in Fig.~\ref{fig:3by4_upended}.
+Cube ratios can also be useful for measuring the similarity of paths.
+If the edge ratio is not identical but approximately the same, the two paths are \emph{approximately} edge ratio equivalent to the measure of the difference of their ratios.
 
 
 
