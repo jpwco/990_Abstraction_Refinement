@@ -1,20 +1,22 @@
 \section{Introduction}
 
-The world is full of moving things, and increasingly, things know where they are. 
-Ubiquitous sensor technologies, like GPS, combined with networked storage enables us to continually detect and archive spatial movement.
-These myriad data points can answer questions of great value, including geospatial distributions, trends and traffic flows, popular restaurants, migration patterns and much more.
-
-\begin{wrapfigure}{l}{0.42\textwidth}
+\begin{wrapfigure}{r}{0.38\textwidth}
+  \vspace{-0.4cm}
   \centering
-  \includegraphics[width=0.42\textwidth]{./figures/path_overview}
+  \includegraphics[width=0.38\textwidth]{./figures/path_overview}
   \caption{Unit cube space used in spatial abstraction.}
   \label{fig:unitCubes}
 \end{wrapfigure}
 
+The world is full of moving things, and increasingly, things know where they are. 
+Ubiquitous sensor technologies, like GPS, combined with networked storage enables us to continually detect and archive spatial movement.
+These myriad data points can answer questions of great value, including geospatial distributions, trends and traffic flows, popular restaurants, migration patterns and much more.
+
+
 However, we can be overwhelmed because we are ``drowning in data"~\cite{morse1993drowning}.
 Further, it can be difficult to examine high-level relationships because points and lines are specific; the story is at the level of the forest and we can only see the trees.  
 Often it is only feasible to analyze large data sets by choosing an appropriate level of abstraction.
-The work presented here is about one such kind of abstraction.
+The work presented here explores one such kind of abstraction.
 We consider a ``spatial abstraction" where particular points in space-time are mapped to unit cubes, as shown in Fig.~\ref{fig:unitCubes}.
 Using techniques inspired by software analysis, specifically Daikon invariants~\cite{kataoka2001automated}, we scan traces of spatial movement, and like Daikon, search for properties that are true within the abstraction.  
 
@@ -25,11 +27,11 @@ and validate our tool's ability to detect spatial properties on one or more acto
 
 The paper is organized as follows:
 Sec.~\ref{sec:background} gives an overview of both spatial analysis and the Daikon invariant analysis tool;
-Sec.~\ref{sec:technique} describes the method of spatial abstraction, including defining terms and a table of formalized properties;
-Sec.~\ref{sec:tool} provides an overview of our tool that implements this method of analysis;
+Sec.~\ref{sec:technique} describes the technique of spatial abstraction, including defining terms and a table of formalized properties;
+Sec.~\ref{sec:tool} provides an overview of our prototype tool that implements this method of analysis;
 Sec.~\ref{sec:application} shows an initial application of our tool to a real robotic system;
 Sec.~\ref{sec:related} situates this work relative to other kinds of movement analysis;
-in Sec.~\ref{sec:observations} we reflect on some unexpected and unexplored features of spatial abstraction;
+in Sec.~\ref{sec:observations} we reflect on some unexpected and curious features of spatial abstraction;
 and finally, Sec.~\ref{sec:conclusion} summarizes this work and describes future lines of inquiry. 
 
 
