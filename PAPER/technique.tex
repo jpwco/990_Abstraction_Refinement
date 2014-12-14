@@ -10,7 +10,7 @@ We assume all traces share identical time and world frames, or they have been sy
 Let trace $T$ be indexed by $i$ so that $T_i$ is the $i$th time-ordered record in $T$, and let the set of traces $\mathcal{T}$ be indexed so $T^i$ is the $i$th trace in $\mathcal{T}$. 
 
 Each trace pertains to an \emph{actor}, designated collectively as the set $\mathsf{A}$ and individually as $\bigstar$. 
-The relation $\mathsf{B}$ links an actor $\bigstar^i$ to traces $T^i$.
+The relation $\mathsf{B}$ links an actor $\bigstar^i$ to trace $T^i$.
 
 
 Let there exist a space $Cube^3 \equiv \mathbb{Z}^3$.  In this space we denote a function $f_{cube}$ that maps from a trace record to a cube, $f_{cube} : T_i \rightarrow cube_i$. 
@@ -94,7 +94,7 @@ Hot Box & $\phi_{\{hotBoxOfSizeN\}} = \exists b_i, v_i \in E | n \geq |\{e \in E
 Informally, the above properties correspond to the following descriptions.
 ``Moves" checks whether the actor visits any cube other than its initial one.
 ``Returns home" check whether the actor leaves the initial cube and returns to it at a later point in time.
-``No repetition" checks that an actor does not re-enter some cube once it has left it.
+``No repetition" checks that an actor does not re-enter some cube after leaving it.
 ``Loiters" checks that an actor does not stay in some cube for longer than some given time bound.
 ``Teleports" checks that the cube trace is connected within the cube-map, meaning there are no ``skipped," or vacant cubes between successive time steps.
 ``Hot box" checks if any cube in the map has been visited at least a specified number of times.
@@ -121,6 +121,8 @@ PROPERTY & DEFINITION \\ \hline
 Informally, the above properties correspond to the following descriptions.
 ``Independence" checks that any two actors never occupy the same cube at any point in a trace.
 ``Following" checks to see if any two actors share a given cube-path at any point in a trace.
+``Dense" checks to see if many actors occupy some subspace of $Cube^3$ at a given time.
+``Sparse" checks to see if relatively few actors occupy some subspace of $Cube^3$ at a given time.
 The ``above/below" and remaining properties specify partial order properties corresponding to the six directions in \rthree for some time-interval within a trace.
 
 \subsection{Properties of Paths}

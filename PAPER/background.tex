@@ -2,8 +2,8 @@
 \label{sec:background}
 
 Many people conceive of space in the manner of Descartes, where a fixed world frame with three perpendicular axes identifies an exact position at any point.  
-Yet more sophisticated observers follow Minkowski~\cite{minkowski1952space} and imagine curvature in space time.
-We're interested in a coarsening of these perspectives, imaging the universe cut into regular stacks of identical boxes, akin to an occupancy grid~\cite{moravec1985high}, or to use more technical terms, a tessellation of \rthree by a unit cuboid.
+Yet other observers follow Minkowski~\cite{minkowski1952space} and imagine curvature in space time.
+We are interested in a coarsening of these perspectives, imagining the universe cut into regular stacks of identical boxes, akin to an occupancy grid~\cite{moravec1985high}, or to use more technical terms, a tessellation of \rthree by a unit cuboid.
 
 %For example, given a world frame centered directly under your feet, a point in your thumb might be described as $p_{thumb} = (x,y,z) = (0.2m, 0.3m, 0.4m)$.
 %As your thumb moves, the Cartesian coordinates describing this point take on different values over time.
@@ -18,8 +18,8 @@ This kind of coarsening is used in robot planning to reason about collision-free
 
 In this paper, we consider a similar over-approximation of the position of some \emph{actor} within space. 
 The key difference is that we consider properties of spatial abstractions that happened in the past, instead of the future.
-To do this, we adopt a very successful methodology from software engineering and implemented in the tool Daikon~\cite{kataoka2001automated}.
-Daikon uses a record of what happened during software execution to variable values at a particular program point, and this record is called a \emph{program trace}.  Daikon infers high-level properties of software behavior based on these traces..
+To do this, we adopt a very successful methodology from software engineering which is implemented in the tool Daikon~\cite{kataoka2001automated}.
+Daikon uses a record of what happened during software execution to variable values at particular program points, and this record is called a \emph{program trace}.  Daikon infers high-level properties of software behavior based on these traces.
 We consider a \emph{spatial trace}, a finite time sequence of positions, and try to reason about higher-level properties of movement.
 
 %If we could record, or write down, a sequence of point 

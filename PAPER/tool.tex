@@ -4,7 +4,7 @@
 In this section, we describe the implementation of our tool for reasoning about spatial properties.
 In the previous section, we used the language of \emph{cubes} to discuss the general methodology. 
 In discussing the tool, we use the language of \emph{boxes}, \emph{box traces} and \emph{box sizes} as a way to differentiate the theory from the concrete implementation, which differ in small ways.
-Our tool, written in Ruby, will take trace files, a box size, and bounding dimensions as input, and will return a set of spatial-temporal properties inferred from the traces.  
+Our tool, written in Ruby, takes trace files, a box size, and bounding dimensions as input, and returns spatial-temporal properties inferred from the traces.  
 
 \begin{figure}[ht]
   \centering
@@ -13,7 +13,7 @@ Our tool, written in Ruby, will take trace files, a box size, and bounding dimen
   \label{fig:workflow}
 \end{figure}
 
-This description elaborates on the high-level workflow diagram as shown in Fig.~\ref{fig:workflow}.
+This description elaborates on the high-level workflow diagram shown in Fig.~\ref{fig:workflow}.
 The trace files will be one or more .bag files.  
 A bag is the file format used by the Robot Operating System (ROS) for storing ROS message data.  
 Via messages, various sensors can write their values to these bags during an execution. 
@@ -24,9 +24,9 @@ We first convert the .bag files to .csv files with four columns which contain a 
  Our tool currently makes the assumption that we receive one \emph{complete} trace of some run, so we are not stitching together partitions of lengthy runs; this may need to be done in the future.
  Each time frame is mapped to some box, so to temporally sync the runs, we are considering the start of the run to be the global time frame of the greatest initial time frame of all given traces.
 
-The cube size is given as a single positive floating-point integer, representing the desired length of the cube edge in meters.
+The box size is given as a single positive floating-point integer (will be a cubic box), representing the desired length of the box edges in meters.
 The bounding dimensions are given as a 3-tuple of positive floating-point integers, representing the bounds of the space in which the actors move.
-Given the cube size, we map the position of each time frame of a single trace to the box corresponding to its position in \rthree.
+Given the box size, we map the position of each time frame of a single trace to the box which corresponds to an actor's position in \rthree.
  This produces a total ordering of abstracted trace positions given as a succession of boxes, which we will call a box-trace.
  
 % Additionally, you need to set a flag to indicate if the input deals with a single actor or multiple actors.

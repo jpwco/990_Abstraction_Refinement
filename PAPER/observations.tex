@@ -2,7 +2,7 @@
 \label{sec:observations}
 
 In working in unit cube space, we encountered questions and peculiarities that we cannot fully explore in the scope of this work.  
-Here we presently briefly a few of the things we noticed.
+Here we present briefly a few of the things we noticed.
 
 The projection of a trace into cube space is sensitive to the original rotation of the chosen axes.
 So far, we have chosen real-world situations where the axes are aligned with our cube space, like in our examples with flying robots, where the co-ordinates of the motion capture system and the trajectories we programmed are axes aligned.
@@ -21,7 +21,7 @@ This might mean that there are a number of `best orientations' for the cube spac
 Another consideration is choosing a good cube size.  
 Different sizes may generate very different properties.
  If you choose \emph{too small of a cube}, the trace may show a teleport, as shown in Fig.~\ref{fig:teleport}, which we define as a spatially disconnected cube-trace.
-If there are gaps of disconnected cube, and two entities collide in the unaccounted for space, the violation of cube-independence will not be inferred.
+If there are gaps of disconnected cubes, and two entities collide in the unaccounted for space, the violation of cube-independence will not be inferred.
  If you choose \emph{too big of a cube}, this may be too rough of an over approximation.
 For an extreme example, an entity never registers ``leaving home" if its initial cube is the size of the given dimensions.
 Sometimes large over-approximations are desired, such as if you only want to examine the movements across two ``hemispheres" of an entity's space.
