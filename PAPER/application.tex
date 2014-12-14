@@ -6,8 +6,8 @@ Both examples utilize spatial traces gathered from a small flying robot (a quadr
 The trace file is originally a ROS .bag file, and is processed as discussed in Sec.~\ref{sec:tool}. 
 Although not depicted in these visualizations, these paths are directed in ascending time. 
 
-Fig.~\ref{fig:returnsHome} shows a visualization of the output from a traces analyzed for the property $\phi_{returnsHome}$.
-This property is true for a trace $T$ when an actor revisits the cube from which $T$ begins.
+The first example considers one actor $\bigstar_i$ and the property $\phi_{\{returnsHome\}}$.  
+As shown in Fig.~\ref{fig:returnsHome}, this property is true for a trace $T$ when an actor revisits the cube from which $T$ begins.
 The UAV begins on the ground, flies up and across the space, translates in y, and then returns back to where it started from.
 The red cube indicates the space where $\phi_{returnsHome}$ became true.
 The unit cube size used in this example is $0.5m$, about the size of the UAV.
@@ -21,16 +21,16 @@ We chose this size for the cube because at this size, if the `fuzziness' propert
     \label{fig:returnsHome}
 \end{wrapfigure}
 
-The second validation involves two UAVs, that together model the property $\phi_{crumbIntersection=0}$.
+The second example involves two UAVs, that together model the property $\phi_{\{independence\}}$.
 This property is true of one or more traces $T$ when they crossed each other's space during any interval of the traces.
-As shown in Fig.~\ref{fig:crumbIntersection}, one UAV's path is shown moving from bottom left to upper right, and a second UAV's path moves from right to left.
-The red cube shows the location where $\phi_{crumbIntersection=0}$ becomes true.
+As shown in Fig.~\ref{fig:independence}, one UAV's path is shown moving from bottom left to upper right, and a second UAV's path moves from right to left.
+The red cube shows the location where $\phi_{\{independence\}}$ becomes false.
 
 \begin{wrapfigure}{r}{0.58\textwidth}
   \centering
-  \includegraphics[width=0.55\textwidth]{./figures/crumbIntersection.png}
-    \caption{Trace modeling property $\phi_{crumbIntersection=0}$}
-    \label{fig:crumbIntersection}
+  \includegraphics[width=0.55\textwidth]{./figures/independence.png}
+  \caption{Trace modeling property $\phi_{\{independence\}} = false$}
+    \label{fig:independence}
 \end{wrapfigure}
 
 Although these visualizations depict simple properties, they demonstrate that our tool correctly implements the technique and show the application to real data.
