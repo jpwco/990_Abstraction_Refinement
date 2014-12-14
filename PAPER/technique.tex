@@ -5,15 +5,15 @@ In this section, we formalize our technique for reasoning about movement within 
 Starting from spatial traces, we map sequences of positions into both occupied cubes as well as nodes in a graph, then discuss three classes of properties: individual actor properties, multiple actor properties, and properties of paths.
 
 \subsection{Foundations and Definitions}
-We begin with a set of time-sequenced traces $\mathcal{T}$ of spatial data, where an individual trace $T\in\mathcal{T} = (t,x,y,z)$ where $t\in\mathbb{R}$ is a time relative to a global start time, and $x,y,z\in \mathbb{R}$ are familiar positions co-ordinates relative to a world frame. 
+We begin with a set of time-sequenced traces $\mathcal{T}$ of spatial data, where an individual trace $T\in\mathcal{T} = (t,x,y,z)$ where $t\in\mathbb{R}$ is a time relative to a global start time, and $x,y,z\in \mathbb{R}$ are familiar position co-ordinates relative to a world frame. 
 We assume all traces share identical time and world frames, or they have been synchronized by pre-processing.
-Let trace T be indexed by $i$ so that $T_i$ is the $i$th time-ordered record in $T$, and let the set of traces $\mathcal{T}$ be indexed so $T^i$ is the $i$th trace in $\mathcal{T}$. 
+Let trace $T$ be indexed by $i$ so that $T_i$ is the $i$th time-ordered record in $T$, and let the set of traces $\mathcal{T}$ be indexed so $T^i$ is the $i$th trace in $\mathcal{T}$. 
 
-Each trace pertains to an \emph{actor}, designated individually as $\bigstar$ and collectively as the set $\mathsf{A}$. 
+Each trace pertains to an \emph{actor}, designated collectively as the set $\mathsf{A}$ and individually as $\bigstar$. 
 The relation $\mathsf{B}$ links an actor $\bigstar^i$ to traces $T^i$.
 
 
-Let there exist a space $Cube^3 \equiv \mathbb{Z}^3$.  In this space we denote a functions $f_{cube}$ that maps from a trace record to a cube, $f_{cube} : T_i \rightarrow cube_i$. 
+Let there exist a space $Cube^3 \equiv \mathbb{Z}^3$.  In this space we denote a function $f_{cube}$ that maps from a trace record to a cube, $f_{cube} : T_i \rightarrow cube_i$. 
 
 
 \begin{equation}
@@ -22,7 +22,7 @@ f_{cube}(t,x,y,z) = (\lfloor \alpha * x \rfloor, \lfloor \alpha * y \rfloor , \l
 \end{equation}
 
 The symbol $\alpha$ in Eq.~\ref{eq:fcube} denotes a scaling factor to convert between the original unit of measure to the size of the unit cube (See Sec.~\ref{sec:observations} for a discussion of choosing the size of the unit cube).
-For each element in a trace $T$, we both map its position to a cube and if it does not already exist, we add a node to a multigraph $G = (V,E)$ embedded within $Cube^3$.
+For each record in a trace $T$, we both map its position to a cube and add a node to a multigraph $G = (V,E)$, if it does not already exist. $G$ can be thought of as embedded within $Cube^3$.
 
 \begin{equation}
   cube_i \Rightarrow v_i \in V
@@ -130,17 +130,17 @@ The ``above/below" and remaining properties specify partial order properties cor
       \caption{The ratio cube.}
       \label{fig:ratioCube}
 \end{wrapfigure}
-In order to compare multiple path, we consider for each path $P$ a method of counting how many times an actor moves in each direction.  
+In order to compare multiple paths, we consider for each path $P$ a method of counting how many times an actor moves in each direction.  
 In our model, there are six directions: up, down, left, right, forward, back, and we assign a counter to each.
 We then compare the ratios of the counters, and use this ratio as a way of comparing multiple paths.
-A visual representation of these counters and the ratio between faces is shown in Fig.~\ref{fig:ratioCube}, and shows an example where a $P(cube_i, cube_j)$ moves in direction $a$ three units and direction $b$ four units.
+A visual representation of these counters and the ratio between directions is shown in Fig.~\ref{fig:ratioCube}, and shows an example where a $P(cube_i, cube_j)$ moves in direction $a$ three units and direction $b$ four units.
 
-As shown in the figure, the number of moves in each direction is associated with a face of the ratio cube, and the ratios between the directions is associated with the edges of the cube.
+As shown in the figure, the number of moves in each direction is associated with a face of the ratio cube, and the ratios between the directions is associated with an edge of the cube, depicted by a yellow line.
 
 
-Figs.~\ref{fig:3by4}-\ref{fig:6by8} show ratio equivalent paths, that is, the ratio of the number of moves made in each of the size directions is the same.
+Figs.~\ref{fig:3by4}-\ref{fig:6by8} show ratio equivalent paths, that is, the ratio of the number of moves made in each of the six directions is the same.
 Note than these ratios are invariant under transformation by scale.
-Fig.~\ref{fig:6by8_squiggle} depicts a path that make the same ratio of moves in a different order, and therefore all paths with identical ratios in the edge cube are likewise path ratio equivalent.
+Fig.~\ref{fig:6by8_squiggle} depicts a path that makes the same ratio of moves in a different order, and therefore all paths with identical ratios in the edge cube are likewise path ratio equivalent.
 
 
 \begin{figure}
@@ -177,7 +177,7 @@ We consider this path to be \emph{rotationally} ratio equivalent to the paths in
 There are 24 rotational symmetries for a cube (one is the identity), so searching for ratio equivalence given two paths is tractable.
 
 Cube ratios can also be useful for measuring the similarity of paths.
-If the edge ratio is not identical but approximately the same, the two paths are \emph{approximately} edge ratio equivalent to the measure of the difference of their ratios.
+If the edge ratio is not identical but approximately the same, the two paths are \emph{approximately} edge ratio equivalent, to the extent of the measure of the difference of their ratios.
 
 
 
