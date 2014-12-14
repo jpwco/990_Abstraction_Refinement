@@ -20,13 +20,13 @@ This might mean that there are a number of `best orientations' for the cube spac
 
 Another consideration is choosing a good cube size.  
 Different sizes may generate very different properties.
- If you choose \emph{too small of a cube}, the trace may show a teleport, as shown in Fig.~\ref{fig:teleport}, which we define as a spatially disconnected cube-trace.
+If you choose \emph{too small of a cube}, the trace may model $\phi_{\{teleport\}}$, as shown in Fig.~\ref{fig:teleport}, which we define as a spatially disconnected cube-trace.
 If there are gaps of disconnected cubes, and two entities collide in the unaccounted for space, the violation of cube-independence will not be inferred.
  If you choose \emph{too big of a cube}, this may be too rough of an over approximation.
 For an extreme example, an entity never registers ``leaving home" if its initial cube is the size of the given dimensions.
 Sometimes large over-approximations are desired, such as if you only want to examine the movements across two ``hemispheres" of an entity's space.
 
-We are curious about moments when trajectories loiter and meander slightly near the intersection of four cubes.
+We are curious about moments when trajectories loiter and meander slightly near the intersection of eight cubes.
 These are literally `corner cases' where several or even many nodes would be added in the graph even though the movements are very small.
 It might be worth building in thresholds to ensure a spatial trace has `really' moved to the next cube.
 
