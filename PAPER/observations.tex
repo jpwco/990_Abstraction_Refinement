@@ -11,9 +11,16 @@ We suspect that box trace properties and cube ratios will change in proportion t
 Further rotation from $45-90^{circ}$s will decrease divergence until a rotational symmetry is found perpendicular to the original axis.
 This might mean that there are a number of `best orientations' for the cube space relative the spatial trace, and that initially searching the space of possible orientations would find a better fit from which to find properties.
 
+\begin{wrapfigure}{l}{0.62\textwidth}
+  \centering
+  \includegraphics[width=0.62\textwidth]{./figures/cubesTooSmall.png}
+  \caption{Example of $10cm$ cubes where $\phi_{teleports}$ is true}
+  \label{fig:teleport}
+\end{wrapfigure}
+
 Another consideration is choosing a good cube size.  
 Different sizes may generate very different properties.
- If you choose \emph{too small of a cube}, the trace may show a teleport, which we define as a spatially disconnected cube-trace.
+ If you choose \emph{too small of a cube}, the trace may show a teleport, as shown in Fig.~\ref{fig:teleport}, which we define as a spatially disconnected cube-trace.
 If there are gaps of disconnected cube, and two entities collide in the unaccounted for space, the violation of cube-independence will not be inferred.
  If you choose \emph{too big of a cube}, this may be too rough of an over approximation.
 For an extreme example, an entity never registers "leaving home" if its initial cube is the size of the given dimensions.
