@@ -1,7 +1,7 @@
 \section{Background}
 \label{sec:background}
 
-Many people conceive of space in the manner of Descartes, where a fixed world frame with three perpendicular axes identifies an exact position at any point.  
+Many people conceive of space in the manner of Descartes, where with three perpendicular axes identify every point.  
 Yet other observers follow Minkowski~\cite{minkowski1952space} and imagine curvature in space time.
 We are interested in a coarsening of these perspectives, imagining the universe cut into regular stacks of identical boxes, akin to an occupancy grid~\cite{moravec1985high}, or to use more technical terms, a tessellation of \rthree by a unit cuboid.
 
@@ -17,8 +17,8 @@ We are interested in a coarsening of these perspectives, imagining the universe 
 This kind of coarsening is used in robot planning to reason about collision-free trajectories, obstacle avoidance, and planning into the future~\cite{siegwart2011introduction}.
 
 In this paper, we consider a similar over-approximation of the position of some \emph{actor} within space. 
-The key difference is that we consider properties of spatial abstractions that happened in the past, instead of the future.
-To do this, we adopt a very successful methodology from software engineering which is implemented in the tool Daikon~\cite{kataoka2001automated}.
+The key difference is that we consider properties of spatial abstractions that happened \emph{in the past}, instead of the future.
+To do this, we adopt a very successful methodology from software engineering implemented in the tool Daikon~\cite{kataoka2001automated}.
 Daikon uses a record of what happened during software execution to variable values at particular program points, and this record is called a \emph{program trace}.  Daikon infers high-level properties of software behavior based on these traces.
 We consider a \emph{spatial trace}, a finite time sequence of positions, and try to reason about higher-level properties of movement.
 
