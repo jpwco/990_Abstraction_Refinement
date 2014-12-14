@@ -1,0 +1,21 @@
+\section{Observations}
+\label{sec:observations}
+
+In working in unit cube space, we have noticed peculiarities and have encountered questions that we cannot fully explore in the scope of this work.  
+Here we presently briefly a few of the things we have noticed.
+
+The project of a trace into cube space is sensitive to the original rotational orientation to the chosen axis.
+So far we happen to have chosen real-world situations where the axis are aligned with our cube space, like in our examples with flying robots, where the co-ordinates of the motion capture system and the trajectories we programmed are axis aligned.
+This would not necessarily need to be the case.
+We suspect that box trace properties and cube ratios will change in proportion to the rotation angle, until a maximum divergence is reached $45^{\circ}$s from the original axis.
+Further rotation from $45-90^{circ}$s will decrease divergence until a rotational symmetry is found perpendicular to the original axis.
+This might mean that there are a number of `best orientations' for the cube space relative the spacial trace, and that initially searching the space of possible orientations would find a better fit from which to find properties.
+
+Another consideration is choosing a good cube size.  As mentioned above...
+
+We are curious about moments when trajectories loiter and meandering slightly near the intersection of four cubes.
+These are literally `corner cases' where several or even many nodes would be added in the graph even though the movements are very small.
+It might be worth building in thresholds to ensure a spacial trace has `really' moved to the next cube.
+
+
+
