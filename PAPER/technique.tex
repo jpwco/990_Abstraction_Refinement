@@ -83,21 +83,29 @@ A list of properties is presented in tabular form below.
 \hline
 PROPERTY & FORMALISM \\ \hline
 % Move to multiple places & $\phi_{\{multiplePlaces\}} = \exists (P(b_{home}, b_a), P(b_{home}, b_b)| b_a \neq b_a)$ \\ \hline
-Move to multiple places & $\phi_{\{multiplePlaces\}} = |V| > 1$ \\ \hline
+Moves & $\phi_{\{moves\}} = |V| > 1$ \\ \hline
 Returns Home & $\phi_{\{returnhome\}} = \exists P(cube_{home}, cube_{home})$ \\ \hline
 No repetition & $\phi_{\{noRepetition\}} = \forall (v_a, v_b), (v_c,v_d) in E, v_b \neq v_c, v_a \neq v_d$ \\ \hline
- Loiters & $\phi_{\{loiters\}} =  \exists e \in E$ such that $e[time] - e_{prev}[time] > k$, where $k$ is time bound \\ \hline
+ Loiters & $\phi_{\{loiters\}} =  \exists e \in E$ s.t. $e[time] - e_{prev}[time] > k$; $k$ is time bound \\ \hline
 Teleports & $\phi_{\{teleport\}}=  \exists  cube_i, cube_j | (F_{next}(cube_i, cube_j) \land \lnot Adjacent(cube_i, cube_j))$ \\ \hline
 Hot Box & $\phi_{\{hotBoxOfSizeN\}} = \exists b_i, v_i \in E | n \geq |\{e \in E | e(v_x, v_i), v_x \in E\}$ \\ \hline
 \end{tabular}
+
+Informally, the above properties correspond to the following descriptions.
+``Moves" checks whether the actor visits any cube other than its initial one.
+``Returns home" check whether the actor leaves the initial cube and returns to it at a later point in time.
+``No repetition" checks that an actor does not re-enter some cube once it has left it.
+``Loiters" checks that an actor does not stay in some cube for longer than some given time bound.
+``Teleports" checks that the cube trace is connected within the cube-map, meaning there are no ``skipped," or vacant cubes between successive time steps.
+``Hot box" checks if any cube in the map has been visited at least a specified number of times.
 
 
 \subsection{Properties of Multiple Actors}
 \begin{tabular}{| p{2.8cm} | p{11.5cm} | }
 \hline
 PROPERTY & DEFINITION \\ \hline
- Crumb independence (given graphs of $n$ actors)& $\phi_{\{crumbInd\}} =  \forall V_i,V_j \in V, i \neq j \rightarrow V_i \cap V_j = \emptyset $ \\ \hline
- Following crumbs & $\phi_{\{following\}} =  \exists E' \subset E_1 \land E'' \subset E_2$ such that $path(E')=path(E'') $  \\ \hline
+ Independence& $\phi_{\{independence\}} =  \forall V_i,V_j \in V, i \neq j \rightarrow V_i \cap V_j = \emptyset $ \\ \hline
+ Following & $\phi_{\{following\}} =  \exists E' \subset E_1 \land E'' \subset E_2$ s.t. $P(E')=P(E'') $  \\ \hline
 % not sure how to do these formulas in a nice way with graphs yet
 % these are only for two entities
  Above & $T_1[i].z > T_2[i].z \forall i$ where $i$ is indexing a time interval\\ \hline
@@ -107,6 +115,11 @@ PROPERTY & DEFINITION \\ \hline
  Right & $T_1[i].y < T_2[i].y \forall i$ where $i$ is indexing a time interval \\ \hline
  Left & $T_1[i].z < T_2[i].z \forall i$ where $i$ is indexing a time interval \\ \hline
 \end{tabular}
+
+Informally, the above properties correspond to the following descriptions.
+``Independence" checks that any two actors never occupy the same cube at any point in a trace.
+``Following" checks to see if any two actors share a given cube-path at any point in a trace.
+The ``above/below" and remaining properties specify partial order properties corresponding to the six directions in \rthree for some time-interval within a trace.
 
 \subsection{Properties of Paths}
 \subsubsection{The Ratio Cube}
