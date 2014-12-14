@@ -9,13 +9,19 @@ So far we happen to have chosen real-world situations where the axis are aligned
 This would not necessarily need to be the case.
 We suspect that box trace properties and cube ratios will change in proportion to the rotation angle, until a maximum divergence is reached $45^{\circ}$s from the original axis.
 Further rotation from $45-90^{circ}$s will decrease divergence until a rotational symmetry is found perpendicular to the original axis.
-This might mean that there are a number of `best orientations' for the cube space relative the spacial trace, and that initially searching the space of possible orientations would find a better fit from which to find properties.
+This might mean that there are a number of `best orientations' for the cube space relative the spatial trace, and that initially searching the space of possible orientations would find a better fit from which to find properties.
 
-Another consideration is choosing a good cube size.  As mentioned above...
+Another consideration is choosing a good cube size.  
+Different sizes may generate very different properties.
+ If you choose \emph{too small of a cube}, the trace may show a teleport, which we define as a spatially disconnected cube-trace.
+If there are gaps of disconnected cube, and two entities collide in the unaccounted for space, the violation of cube-independence will not be inferred.
+ If you choose \emph{too big of a cube}, this may be too rough of an over approximation.
+For an extreme example, an entity never registers "leaving home" if its initial cube is the size of the given dimensions.
+Sometimes large over-approximations are desired, such as if you only want to examine the movements across two ``hemispheres" of an entity's space.
 
 We are curious about moments when trajectories loiter and meandering slightly near the intersection of four cubes.
 These are literally `corner cases' where several or even many nodes would be added in the graph even though the movements are very small.
-It might be worth building in thresholds to ensure a spacial trace has `really' moved to the next cube.
+It might be worth building in thresholds to ensure a spatial trace has `really' moved to the next cube.
 
 
 
