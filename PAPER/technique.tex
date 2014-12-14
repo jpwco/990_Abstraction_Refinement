@@ -145,6 +145,7 @@ The ``above/below" and remaining properties specify partial order properties cor
 \subsubsection{The Ratio Cube}
 
 \begin{wrapfigure}{l}{0.3\textwidth}
+  \vspace{-0.4cm}
   \centering
     \includegraphics[width=0.3\textwidth]{./figures/ratioCube_3_4}
       \caption{The ratio cube.}
@@ -154,6 +155,7 @@ In order to compare multiple paths, we consider for each path $P$ a method of co
 In our model, there are six directions: up, down, left, right, forward, back, and we assign a counter to each.
 We then compare the ratios of the counters, and use this ratio as a way of comparing multiple paths.
 A visual representation of these counters and the ratio between directions is shown in Fig.~\ref{fig:ratioCube}, and shows an example where a $P(cube_i, cube_j)$ moves in direction $a$ three units and direction $b$ four units.
+The cube ratio is undefined when the denominator is zero.
 
 As shown in the figure, the number of moves in each direction is associated with a face of the ratio cube, and the ratios between the directions is associated with an edge of the cube, depicted by a yellow line.
 
@@ -190,7 +192,6 @@ Fig.~\ref{fig:6by8_squiggle} depicts a path that makes the same ratio of moves i
   \label{fig:3by4_upended}
   \end{minipage}\hfill
 \end{figure}
-
     
 An interesting case is exhibited in Fig.~\ref{fig:3by4_upended}, where the ratio is the same but along another edge.
 We consider this path to be \emph{rotationally} ratio equivalent to the paths in Figs.\ref{fig:3by4}-\ref{fig:6by8_squiggle}a.
@@ -198,25 +199,3 @@ There are 24 rotational symmetries for a cube (one is the identity), so searchin
 
 Cube ratios can also be useful for measuring the similarity of paths.
 If the edge ratio is not identical but approximately the same, the two paths are \emph{approximately} edge ratio equivalent, to the extent of the measure of the difference of their ratios.
-
-
-
-%Method:
-%\begin{itemize}
- %\item partition space into boxes
- %\item enumerate the boxes
- %\item map a concrete positional trace through space onto its uniquely corresponding boxes
- %\item sync time frames of box-traces to infer spatio-temporal properties
- %\item using the spatio-temporal box-trace, derive properties (given elsewhere)
-%\end{itemize}
-
-%\emph{Selecting appropriate box size}
-
-%Different box sizes may generate very different properties.
-
-%\emph{Too small of a box} If you choose the boxes to be relatively small, the trace may show a teleport, which we define as a spatially disconnected box-trace.
-%If there are gaps of disconnected boxes, and two entities collide in the unaccounted for space, the violation of box-independence will not be inferred.
-
-%\emph{Too big of a box} If you choose the boxes to be relatively large, this may be too rough of an over approximation.
-%For an extreme example, an entity never registers "leaving home" if its initial box is the size of the given dimensions.
-%Sometimes large over-approximations are desired, such as if you only want to examine the movements across two ``hemispheres" of an entity's space.
