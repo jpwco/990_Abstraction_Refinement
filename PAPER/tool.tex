@@ -44,3 +44,6 @@ Given the box size, we map the position of each time frame of a single trace to 
  But a property like box-independence considers interactions between all the actors, and so its truth table will be a $n \times n$ matrix with the truth value for box-independence between $(box_i,box_j)$ for all $1 \leq i,j \leq n$.
  
   For many of the above properties, it will be important to know specific details of violated properties (which box, which time frame, etc.); these details are being stored but we are currently only outputting binary truth values.
+  
+  Our tool does not yet derive a directed multigraph from the traces; this will be done in the coming weeks.
+  The tool currently detects a subset of the properties mentioned in the previous section, some of which are dependent on examining a multigraph.  
