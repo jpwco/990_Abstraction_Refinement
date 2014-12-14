@@ -73,7 +73,7 @@
 \markboth{M. Gerrand and J.P. Ore}{On Spatial Abstractions from Trace Data}
 
 % Title portion
-\title{On Spatial Abstractions from Trace Data}
+\title{Spatial Abstraction of Trace Data}
 \author{MITCH GERRARD
 \affil{University of Nebraska}
 JOHN-PAUL ORE
@@ -86,7 +86,11 @@ JOHN-PAUL ORE
 %       currently affiliated with NASA.
 
 \begin{abstract}
-The abstract goes here, usually written last.
+Ubiquitous position sensors in cars, phones, ships, and satellites continually collect time-sequenced records of spatial coordinates.
+Analyzing this data to extract useful information is an area of intense study in machine learning, geospatial sciences, and data mining.
+In this paper, we explore the application of software analysis techniques to this problem, specifically trace analysis for property and invariant detection, 
+We present a novel technique for abstracting away from individual points and explore and discuss properties that can be found within this spatial abstraction for one or more moving things.
+We implement our technique in a prototype tool and present examples from the application of this tool to real-world data.
 \end{abstract}
 
 \category{I.2.4}{Knowledge Representation Formalisms and Methods}{Representations (procedural and rule-based}
@@ -95,7 +99,7 @@ The abstract goes here, usually written last.
 
 \keywords{Spatial Abstraction, Knowledge Representation}
 
-\acmformat{Mitch Gerrard, John-Paul Ore, 2014. On Spatial Abstractions from Trace Data.}
+%\acmformat{Mitch Gerrard, John-Paul Ore, 2014. On Spatial Abstractions from Trace Data.}
 \begin{bottomstuff}
 
 %This work is supported by the National Science Foundation, under
@@ -116,13 +120,14 @@ Lincoln, Nebraska, 68588.
 \input{tool}
 \input{application}
 \input{relatedWork}
+\input{observations}
 \input{conclusion}
 
 
 
 % Acknowledgments
 \begin{acks}
-  The authors would like to thank Dr. Matthew Dwyer and Dr. Sebastian Elbaum for there insightful feedback and scintillating conversations.
+  The authors would like to thank Dr. Matthew Dwyer and Dr. Sebastian Elbaum for their insightful feedback and scintillating conversations.
 \end{acks}
 
 % Bibliography
@@ -131,8 +136,6 @@ Lincoln, Nebraska, 68588.
 
 % History dates
 %\received{February 2007}{March 2009}{June 2009}
-
-
 
 
 \end{document}
