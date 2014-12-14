@@ -5,7 +5,7 @@ In this section, we formalize our technique for reasoning about movement within 
 Starting from spatial traces, we map sequences of positions into both occupied cubes as well as nodes in a graph, then discuss three classes of properties: individual actor properties, multiple actor properties, and properties of paths.
 
 \subsection{Foundations and Definitions}
-We begin with a set of time-sequenced traces $\mathcal{T}$ of spatial data, where an individual trace $T\in\mathcal{T} = (t,x,y,z)$ where $t\in\mathbb{R}$ is a time relative to a global start time, and $x,y,z\in \mathbb{R}$ are familiar position co-ordinates relative to a world frame. 
+We begin with a set of time-sequenced traces $\mathcal{T}$ of spatial data, with an individual trace $T\in\mathcal{T} = (t,x,y,z)$ where $t\in\mathbb{R}$ is a time relative to a global start time, and $x,y,z\in \mathbb{R}$ are familiar position co-ordinates relative to a world frame. 
 We assume all traces share identical time and world frames, or they have been synchronized by pre-processing.
 Let trace $T$ be indexed by $i$ so that $T_i$ is the $i$th time-ordered record in $T$, and let the set of traces $\mathcal{T}$ be indexed so $T^i$ is the $i$th trace in $\mathcal{T}$. 
 
@@ -78,7 +78,7 @@ A list of properties is presented in tabular form below.
 
 \subsection{Properties of Single Actors}
 
-\emph{Note: all properties in this table pertain to a particular actor $\bigstar_i$.}
+\emph{Note: all properties in this table pertain to a particular actor $\bigstar^i$.}
 \begin{tabular}{| p{2.8cm} | p{11.5cm} | }
 \hline
 PROPERTY & FORMALISM \\ \hline
@@ -108,6 +108,11 @@ PROPERTY & DEFINITION \\ \hline
  Following & $\phi_{\{following\}} =  \exists E' \subset E_1 \land E'' \subset E_2$ s.t. $P(E')=P(E'') $  \\ \hline
  Dense Space & $\phi_{\{dense\}} = \exists S \subset Cube^3$ s.t. $> k \bigstar$'s occupy $S$ at time $t$\\ \hline
  Sparse Space & $\phi_{\{sparse\}} = \exists S \subset Cube^3$ s.t. $< k \bigstar$'s occupy $S$ at time $t$\\ \hline
+ Slow Traffic& $\phi_{\{slowTraffic\}} = \exists S \subset Cube^3$ s.t. $> \forall \bigstar \in S \phi_{\{lingers>k\}}$ \\ \hline
+ Fast Traffic & $\phi_{\{fastTraffic\}} = \exists S \subset Cube^3$ s.t. $> \forall \bigstar \in S \phi_{\{lingers<k\}}$ \\ \hline
+ Mobbing& $\phi_{\{mobbing\}} = \exists [t_i, t_j] \land S \subset Cube^3$ s.t. $ \phi{\{dense\}}(t_i) < \phi{\{dense\}}(t_j)$ \\ \hline
+ Fleeing& $\phi_{\{fleeing\}} = \exists [t_i, t_j] \land S \subset Cube^3$ s.t. $ \phi{\{dense\}}(t_i) > \phi{\{dense\}}(t_j)$ \\ \hline
+ SConnected& $\phi_{\{SConnected\}} = \exists SCC \in E$ \\ \hline
 % not sure how to do these formulas in a nice way with graphs yet
 % these are only for two entities
  Above & $\phi_{\{above\}} =  T_1[i].z > T_2[i].z \forall i$ where $i$ is indexing a time interval\\ \hline
@@ -123,6 +128,13 @@ Informally, the above properties correspond to the following descriptions.
 ``Following" checks to see if any two actors share a given cube-path at any point in a trace.
 ``Dense" checks to see if many actors occupy some subspace of $Cube^3$ at a given time.
 ``Sparse" checks to see if relatively few actors occupy some subspace of $Cube^3$ at a given time.
+``Slow Traffic" identifies a subspace where the time difference of all successive edges is greater than a value $k$. 
+``Fast Traffic" identifies a subspace where the time difference of all successive edges is less than a value $k$. 
+``Mobbing" identifies a time window during which a subspace has more actors entering that leaving. 
+``Fleeing" identifies a time window during which a subspace has more actors leaving than entering. 
+``SConnected" identifies a strongly connected component (SCC) in the graph.
+Collectively, SCCs partition $Cube^3$ into disconnected subspaces.
+This property can hold for one or more actors.
 The ``above/below" and remaining properties specify partial order properties corresponding to the six directions in \rthree for some time-interval within a trace.
 
 \subsection{Properties of Paths}
