@@ -16,21 +16,21 @@ Further, it can be difficult to examine high-level relationships because points 
 Often it is only feasible to analyze large data sets by choosing an appropriate level of abstraction.
 The work presented here is about one such kind of abstraction.
 We consider a ``spatial abstraction" where particular points in space-time are mapped to unit cubes, as shown in Fig.~\ref{fig:unitCubes}.
-Using techniques inspired by software analysis, specifically Daikon invariants~\cite{kataoka2001automated}, we use trace data gathered as an object moves and explore the properties of movement of things at a higher level.
+Using techniques inspired by software analysis, specifically Daikon invariants~\cite{kataoka2001automated}, we scan traces of spatial movement, and like Diakon, search for properties that are true within the abstraction.  
 
 In this paper, we set forth our technique for abstracting away from particular points, 
-implement our technique in a prototype tool, ``FuzzyCubicCrumbTeleportation", 
-collect real movement data from a small flying robot, 
+implement our technique in a prototype tool, ``FuzzyCubicCrumbTeleportationDetector" \jp{kidding!}, 
+collect real movement data from a small flying robot and analyze it, 
 and validate our tool's ability to detect spatial properties on one or more actors.
 
 The paper is organized as follows:
-Section~\ref{sec:background} gives an overview of both spatial analysis and the Daikon invariants analysis tool;
-Section~\ref{sec:technique} describes the method of spatial abstraction, including defining terms and a table of formalized properties;
-Section~\ref{sec:tool} provides an overview of our tool that implements this method of analysis;
-Section~\ref{sec:application} shows an initial application of our tool to a real robotic system;
-Section~\ref{sec:related} situates this work relative to other kinds of movement analysis;
-in section~\ref{sec:observations} we reflect on some unexpected and unexplored features of spatial abstraction;
-and finally, section~\ref{sec:conclusion} summarizes this work and describes future lines of inquiry. 
+Sec.~\ref{sec:background} gives an overview of both spatial analysis and the Daikon invariant analysis tool;
+Sec.~\ref{sec:technique} describes the method of spatial abstraction, including defining terms and a table of formalized properties;
+Sec.~\ref{sec:tool} provides an overview of our tool that implements this method of analysis;
+Sec.~\ref{sec:application} shows an initial application of our tool to a real robotic system;
+Sec.~\ref{sec:related} situates this work relative to other kinds of movement analysis;
+in Sec.~\ref{sec:observations} we reflect on some unexpected and unexplored features of spatial abstraction;
+and finally, Sec.~\ref{sec:conclusion} summarizes this work and describes future lines of inquiry. 
 
 
 
