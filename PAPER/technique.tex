@@ -13,7 +13,8 @@ Each trace pertains to an \emph{actor}, designated collectively as the set $\mat
 The relation $\mathsf{B}$ links an actor $\bigstar^i$ to trace $T^i$.
 
 
-Let there exist a space $Cube^3 \equiv \mathbb{Z}^3$.  In this space we denote a function $f_{cube}$ that maps from a trace record to a cube, $f_{cube} : T_i \rightarrow cube_i$. 
+Let there exist a space $Cube^3 \equiv \mathbb{Z}^3$, an integer space.
+In this space we denote a function $f_{cube}$ that maps from a trace record to a cube, $f_{cube} : T_i \rightarrow cube_i$, thereby coarsening it.
 
 
 \begin{equation}
@@ -31,8 +32,9 @@ For each record in a trace $T$, we both map its position to a cube and add a nod
 Cubes and nodes in $G$ are in a one-to-one correspondence within a relation $R$.
 
 If a trace $T$ contains two consecutive records $T_i$ and $T_{i+1}$ that map to different cubes, then we add an edge $(v_i, v_{i+1})$ to $E$. 
-Every edge is assigned a label of the time $t$ from $T_{i+1}$ with a label function $w$, so that the edge label indicates the time when the $cube_i$ transitioned to $cube_{i+1}$.
+Every edge is assigned a label of the time $t$ from $T_{i+1}$ with a label function $w$, so that the edge label indicates the time when $\bigstar^i$ transitioned from $cube_i$ to $cube_{i+1}$.
 For every edge $e\in E$ we associate a predecessor and successor, identified in relations $F_{prev}$ and $F_{next}$, denoted collectively as $\mathsf{F}$.
+This means each edge in $G$ corresponds to exactly one actor.
 
 \begin{equation}
   \left( f_{cube}(T_i) \neq f_{cube}(T_{i+1}) \right) \Rightarrow (v_i, v_{i+1}) \in E
@@ -43,6 +45,7 @@ We denote a path between vertices $v_i$ and $v_j$ by $P(v_i, v_j)$ and consider 
 \begin{equation}
   P(v_i, v_j) \equiv P(cube_i, cube_j)
 \end{equation}
+
 
 A spatial abstraction, then, is the tuple:
 
@@ -86,31 +89,31 @@ PROPERTY & FORMALISM \\ \hline
 Moves & $\phi_{\{moves\}} = |V| > 1$ \\ \hline
 Returns Home & $\phi_{\{returnhome\}} = \exists P(cube_{home}, cube_{home})$ \\ \hline
 No repetition & $\phi_{\{noRepetition\}} = \forall (v_a, v_b), (v_c,v_d) in E, v_b \neq v_c, v_a \neq v_d$ \\ \hline
- Loiters & $\phi_{\{loiters\}} =  \exists e \in E$ s.t. $e[time] - e_{prev}[time] > k$; $k$ is time bound \\ \hline
-Teleports & $\phi_{\{teleport\}}=  \exists  cube_i, cube_j | (F_{next}(cube_i, cube_j) \land \lnot Adjacent(cube_i, cube_j))$ \\ \hline
-Hot Box & $\phi_{\{hotBoxOfSizeN\}} = \exists b_i, v_i \in E | n \geq |\{e \in E | e(v_x, v_i), v_x \in E\}$ \\ \hline
+Loiters & $\phi_{\{loiters\}} =  \exists e \in E$ s.t. $w(e) - w(F_{prev}(e)) > k$; $k$ is time bound \\ \hline
+ Teleports & $\phi_{\{teleport\}}=  \exists  cube_i, cube_j$ s.t. $ (F_{next}(cube_i, cube_j) \land \lnot Adjacent(cube_i, cube_j))$ \\ \hline
+ Hot Box & $\phi_{\{hotBoxOfSizeN\}} = \exists cube_i$ s.t. $ |{e \in E | F_{next}(e) = v_i}| > n$ \\ \hline
 \end{tabular}
 
-Informally, the above properties correspond to the following descriptions.
+Informally, the above properties correspond to the following descriptions:
 ``Moves" checks whether the actor visits any cube other than its initial one.
 ``Returns home" check whether the actor leaves the initial cube and returns to it at a later point in time.
 ``No repetition" checks that an actor does not re-enter some cube after leaving it.
 ``Loiters" checks that an actor does not stay in some cube for longer than some given time bound.
 ``Teleports" checks that the cube trace is connected within the cube-map, meaning there are no ``skipped," or vacant cubes between successive time steps.
-``Hot box" checks if any cube in the map has been visited at least a specified number of times.
+``Hot box" checks if any cube in the map has been visited by the same $\bigstar^i$ at least $n$ times.
 
 
 \subsection{Properties of Multiple Actors}
 \begin{tabular}{| p{2.8cm} | p{11.5cm} | }
 \hline
 PROPERTY & DEFINITION \\ \hline
- Independence& $\phi_{\{independence\}} =  \forall V_{\bigstar_i},V_{\bigstar_j} \in V, i \neq j \rightarrow V_{\bigstar_i} \cap V_{\bigstar_j} = \emptyset $ \\ \hline
-  $k$-independence& $\phi_{\{k-independence\}} =  \forall V_{\bigstar_i},V_{\bigstar_j} \in V, i \neq j \rightarrow V_{\bigstar_i} \cap V_{\bigstar_j} = \emptyset $ \\ \hline
+ Independence& $\phi_{\{independence\}} =  \forall V_{\bigstar^i},V_{\bigstar^j} \in V, i \neq j \rightarrow V_{\bigstar^i} \cap V_{\bigstar^j} = \emptyset $ \\ \hline
+  $k$-independence& $\phi_{\{k-independence\}} =  Adjacent(V_{\bigstar^i}, k) \cap Adjacent(V_{\bigstar^j}, k) = \emptyset $ \\ \hline
  Following & $\phi_{\{following\}} =  \exists E' \subset E_1 \land E'' \subset E_2$ s.t. $P(E')=P(E'') $  \\ \hline
  Dense Space & $\phi_{\{dense\}} = \exists S \subset Cube^3$ s.t. $> k \bigstar$'s occupy $S$ at time $t$\\ \hline
  Sparse Space & $\phi_{\{sparse\}} = \exists S \subset Cube^3$ s.t. $< k \bigstar$'s occupy $S$ at time $t$\\ \hline
- Slow Traffic& $\phi_{\{slowTraffic\}} = \exists S \subset Cube^3$ s.t. $> \forall \bigstar \in S \phi_{\{loiters>k\}}$ \\ \hline
- Fast Traffic & $\phi_{\{fastTraffic\}} = \exists S \subset Cube^3$ s.t. $> \forall \bigstar \in S \phi_{\{loiters<k\}}$ \\ \hline
+ Slow Traffic& $\phi_{\{slowTraffic\}} = \exists S \subset Cube^3$ s.t. $> \forall \bigstar \in S, \cube_S \models \phi_{\{loiters>k\}}$ \\ \hline
+ Fast Traffic & $\phi_{\{fastTraffic\}} = \exists S \subset Cube^3$ s.t. $> \forall \bigstar \in S, \cube_s \models \phi_{\{loiters<k\}}$ \\ \hline
  Mobbing& $\phi_{\{mobbing\}} = \exists [t_i, t_j] \land S \subset Cube^3$ s.t. $ \phi{\{dense\}}(t_i) < \phi{\{dense\}}(t_j)$ \\ \hline
  Fleeing& $\phi_{\{fleeing\}} = \exists [t_i, t_j] \land S \subset Cube^3$ s.t. $ \phi{\{dense\}}(t_i) > \phi{\{dense\}}(t_j)$ \\ \hline
  SConnected& $\phi_{\{SConnected\}} = \exists SCC \subset G$ \\ \hline
