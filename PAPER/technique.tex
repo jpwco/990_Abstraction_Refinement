@@ -1,4 +1,5 @@
 \section{Technique}
+
 \label{sec:technique}
 
 In this section, we formalize our technique for reasoning about movement within a coarse `unit cube' space.
@@ -90,8 +91,8 @@ Moves & $\phi_{\{moves\}} = |V| > 1$ \\ \hline
 Returns Home & $\phi_{\{returnhome\}} = \exists P(cube_{home}, cube_{home})$ \\ \hline
 No repetition & $\phi_{\{noRepetition\}} = \forall (v_a, v_b), (v_c,v_d) in E, v_b \neq v_c, v_a \neq v_d$ \\ \hline
 Loiters & $\phi_{\{loiters\}} =  \exists e \in E$ s.t. $w(e) - w(F_{prev}(e)) > k$; $k$ is time bound \\ \hline
- Teleports & $\phi_{\{teleport\}}=  \exists  cube_i, cube_j$ s.t. $ (F_{next}(cube_i, cube_j) \land \lnot Adjacent(cube_i, cube_j))$ \\ \hline
- Hot Box & $\phi_{\{hotBoxOfSizeN\}} = \exists cube_i$ s.t. $ |{e \in E | F_{next}(e) = v_i}| > n$ \\ \hline
+ Teleports & $\phi_{\{teleports\}}=  \exists  cube_i, cube_j$ s.t. $ (F_{next}(cube_i, cube_j) \land \lnot Adjacent(cube_i, cube_j))$ \\ \hline
+ Hot Box & $\phi_{\{hotBoxOfSizeN\}} = \exists cube_i$ s.t. $ |\{e \in E | F_{next}(e) = v_i\}| > n$ \\ \hline
 \end{tabular}
 
 Informally, the above properties correspond to the following descriptions:
