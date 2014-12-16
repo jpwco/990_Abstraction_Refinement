@@ -1,7 +1,7 @@
 load 'boxes.rb'
 
 def moves? ( box_trace )
-  box_trace.uniq.size > 1
+  box_trace.size > 1
 end
 
 def returns_home? ( box_trace )
@@ -9,7 +9,7 @@ def returns_home? ( box_trace )
   box_trace.each_index.select { |i| (box_trace[i] == home) && (i>0) && (box_trace[i-1] != home) }
 end
 
-#all but home revisits
+# terribly inefficient...redo
 def revisit_map ( bt )
   revisit_map = {}
   rv_boxes = bt.select { |b| bt.count(b) > 1 }.uniq
@@ -49,4 +49,21 @@ end
 
 def is_there? ( pos, trace, time_frame, boxes )
   pos == (boxes[trace[time_frame]])
+end
+
+def loiters? ( box_tr , bound )
+  loiter_time = 1
+  box_tr.each_with_index do |b,time|
+    unless box_tr[time.next].nil?
+      if box_tr[time] == box_tr[time.next]
+        loiter_time += 1
+        if loiter_time >= bound
+          return true
+        end
+      else
+        loiter_time = 1
+      end
+    end
+  end
+  return false
 end
