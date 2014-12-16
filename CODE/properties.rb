@@ -1,7 +1,7 @@
 load 'boxes.rb'
 
 def moves? ( box_trace )
-  box_trace.size > 1
+  box_trace.uniq.size > 1
 end
 
 def returns_home? ( box_trace )
@@ -66,4 +66,39 @@ def loiters? ( box_tr , bound )
     end
   end
   return false
+end
+
+def partial_order ( axis, relation, bxs, bt1, bt2 )
+  bt1.each_with_index do |p,time|
+    unless bt2[time].nil?
+      unless (eval("#{bxs[bt1[time]].send(axis)} #{relation} #{bxs[bt2[time]].send(axis)}"))
+        return false
+      end
+    end
+  end
+  return true
+end
+
+def above? ( boxes, bt1, bt2 )
+  partial_order("z",">",boxes,bt1,bt2)
+end
+
+def below? ( boxes, bt1, bt2 )
+  partial_order("z","<",boxes,bt1,bt2)
+end
+
+def front? ( boxes, bt1, bt2 )
+  partial_order("x",">",boxes,bt1,bt2)
+end
+
+def behind? ( boxes, bt1, bt2 )
+  partial_order("x","<",boxes,bt1,bt2)
+end
+
+def right? ( boxes, bt1, bt2 )
+  partial_order("y",">",boxes,bt1,bt2)
+end
+
+def left? ( boxes, bt1, bt2 )
+  partial_order("y","<",boxes,bt1,bt2)
 end
