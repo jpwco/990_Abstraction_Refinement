@@ -1,0 +1,13 @@
+WORKING ON:
+
+ - complete overall automated workflow on simple example
+   - bags will be parsed to CSVs in separate, offline step
+
+ - structure command input to include options for which property/ies to check
+
+FUTURE:
+
+ - Integrate more efficient map representation
+    - Wrap the tool (Octomaps or RMap) in API calls
+
+ - Write new properties based on "trajectory pattern mining"
