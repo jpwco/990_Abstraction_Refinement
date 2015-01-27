@@ -1,0 +1,3 @@
+Before running RSpec, install it with the terminal command:
+
+  gem install rspec
