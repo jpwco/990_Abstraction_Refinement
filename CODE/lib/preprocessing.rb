@@ -97,24 +97,24 @@ end
 #########################################################################
 
 def normalize_positional_data ( trace_dir )
-  mins = min_values(trace_dir)
-  norm = make_normalizing_array(mins)
+  negs= negative_values(trace_dir)
+  norm = make_normalizing_array(negs)
   normalize_traces(trace_dir, norm)
 end
 
-def min_values ( trace_dir )
-  mins = [0,0,0]
+def negative_values ( trace_dir )
+  negs = [0,0,0]
   Dir.foreach(trace_dir) do |file|
     next if file.start_with?('.')
-    min = min_values_of_file(trace_dir+'/'+file)
-    if min.x < mins.x then mins[0] = min.x end
-    if min.y < mins.y then mins[1] = min.y end
-    if min.z < mins.z then mins[2] = min.z end
+    neg = find_neg_values(trace_dir+'/'+file)
+    if neg.x < negs.x then negs[0] = neg.x end
+    if neg.y < negs.y then negs[1] = neg.y end
+    if neg.z < negs.z then negs[2] = neg.z end
   end
   return mins
 end
 
-def min_values_of_file ( file )
+def find_neg_values ( file )
   x_min = 0; y_min = 0; z_min = 0
   CSV.foreach(file, headers:true) do |row|
     x = row[0].to_f; y = row[1].to_f; z = row[2].to_f
@@ -160,4 +160,82 @@ end
 
 def full_path(dir,file)
   return dir+'/'+file
+end
+
+# INFER GLOBAL DIMENSIONS
+#########################################################################
+
+def get_global_dimensions ( normalized_trace_dir )
+  maxs = max_values(normalized_trace_dir)
+  return [maxs.x.ceil, maxs.y.ceil, maxs.z.ceil]
+end
+
+def min_values ( trace_dir )
+  mins = []
+  first_file = true
+  Dir.foreach(trace_dir) do |file|
+    next if file.start_with?('.')
+    if (first_file)
+      mins = find_min_values(trace_dir+'/'+file)
+      first_file = false
+    else
+      min = find_min_values(trace_dir+'/'+file)
+      if min.x < mins.x then mins[0] = min.x end
+      if min.y < mins.y then mins[1] = min.y end
+      if min.z < mins.z then mins[2] = min.z end
+    end
+  end
+  return mins
+end
+
+def max_values ( trace_dir )
+  maxs = []
+  first_file = true
+  Dir.foreach(trace_dir) do |file|
+    next if file.start_with?('.')
+    if (first_file)
+      maxs = find_max_values(trace_dir+'/'+file)
+      first_file = false
+    else
+      max = find_max_values(trace_dir+'/'+file)
+      if max.x > maxs.x then maxs[0] = max.x end
+      if max.y > maxs.y then maxs[1] = max.y end
+      if max.z > maxs.z then maxs[2] = max.z end
+    end
+  end
+  return maxs
+end
+
+def find_min_values ( file )
+  x_min = 0; y_min = 0; z_min = 0
+  first_row = true
+  CSV.foreach(file, headers:true) do |row|
+    if (first_row)
+      x_min = row[0].to_f; y_min = row[1].to_f; z_min = row[2].to_f
+      first_row = false
+    else
+      x = row[0].to_f; y = row[1].to_f; z = row[2].to_f
+      if x < x_min then x_min = x end
+      if y < y_min then y_min = y end
+      if z < z_min then z_min = z end
+    end
+  end
+  return [x_min, y_min, z_min]
+end
+
+def find_max_values ( file )
+  x_max = 0; y_max = 0; z_max = 0
+  first_row = true
+  CSV.foreach(file, headers:true) do |row|
+    if (first_row)
+      x_max = row[0].to_f; y_max = row[1].to_f; z_max = row[2].to_f
+      first_row = false
+    else
+      x = row[0].to_f; y = row[1].to_f; z = row[2].to_f
+      if x > x_max then x_max = x end
+      if y > y_max then y_max = y end
+      if z > z_max then z_max = z end
+    end
+  end
+  return [x_max, y_max, z_max]
 end
