@@ -26,4 +26,12 @@ class Array
   def upper
     self[1]
   end
+
+  def seg_length
+    self[0]
+  end
+
+  def direction
+    self[1]
+  end
 end
