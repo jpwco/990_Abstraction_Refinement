@@ -73,3 +73,125 @@ end
 
 # ROTATE
 #######################################################################
+
+require 'Matrix'
+
+# We will only look at quarter-rotations right now;
+# when I used the actual sin function with PI/2, 
+# there were floating point approximation problems
+def sin(degree)
+  case degree
+  when 0   then  0
+  when 90  then  1
+  when 180 then  0
+  when 270 then -1
+  when 360 then  0
+  end
+end
+
+def cos(degree)
+  case degree
+  when 0   then  1
+  when 90  then  0
+  when 180 then -1
+  when 270 then  0
+  when 360 then  1
+  end
+end
+
+# You can rotate a (trace) matrix in three dimensional
+# space by multiplying the below rotation matrix by 
+# that column (trace) matrix
+#
+# This formula was taken from the wikipedia on 
+# "Rotation Matrix"
+def rotation_matrix(x,y,z,t)
+  return Matrix.rows([
+    [ x*x*(1-cos(t))+cos(t),   y*x*(1-cos(t))-z*sin(t), z*x*(1-cos(t))+y*sin(t) ],
+    [ x*y*(1-cos(t))+z*sin(t), y*y*(1-cos(t))+cos(t),   z*y*(1-cos(t))-x*sin(t) ],
+    [ x*z*(1-cos(t))-y*sin(t), y*z*(1-cos(t))+x*sin(t), z*z*(1-cos(t))+cos(t)   ]
+  ])
+end
+
+##########################################################
+
+def ninety_rotation(x,y,z)
+  return rotation_matrix(x,y,z,90)
+end
+
+def one_eighty_rotation(x,y,z)
+  return rotation_matrix(x,y,z,180)
+end
+
+def two_seventy_rotation(x,y,z)
+  return rotation_matrix(x,y,z,270)
+end
+
+def equivalent?(trace_1, trace_2)
+  return trace_1 == trace_2
+end
+
+##########################################################
+
+def x_unit_vector
+  return [1,0,0]
+end
+
+def y_unit_vector
+  return [0,1,0]
+end
+
+def z_unit_vector
+  return [0,0,1]
+end
+
+##########################################################
+
+def rotation_about_x? ( tr1_matrix, tr2_matrix )
+  if tr1_matrix == ninety_rotation(*x_unit_vector) * tr2_matrix
+    return "90 degree rotation about x"
+  elsif tr1_matrix == one_eighty_rotation(*x_unit_vector) * tr2_matrix
+    return "180 degree rotation about x"
+  elsif tr1_matrix == two_seventy_rotation(*x_unit_vector) * tr2_matrix
+    return "270 degree rotation about x"
+  else
+    return "no rotation about x"
+  end
+end
+
+def rotation_about_y? ( tr1_matrix, tr2_matrix )
+  if tr1_matrix == ninety_rotation(*y_unit_vector) * tr2_matrix
+    return "90 degree rotation about y"
+  elsif tr1_matrix == one_eighty_rotation(*y_unit_vector) * tr2_matrix
+    return "180 degree rotation about y"
+  elsif tr1_matrix == two_seventy_rotation(*y_unit_vector) * tr2_matrix
+    return "270 degree rotation about y"
+  else
+    return "no rotation about y"
+  end
+end
+
+def rotation_about_z? ( tr1_matrix, tr2_matrix )
+  if tr1_matrix == ninety_rotation(*z_unit_vector) * tr2_matrix
+    return "90 degree rotation about z"
+  elsif tr1_matrix == one_eighty_rotation(*z_unit_vector) * tr2_matrix
+    return "180 degree rotation about z"
+  elsif tr1_matrix == two_seventy_rotation(*z_unit_vector) * tr2_matrix
+    return "270 degree rotation about z"
+  else
+    return "no rotation about z"
+  end
+end
+
+##########################################################
+
+def rotation? ( trace_1, trace_2 )
+  if equivalent?(trace_1,trace_2) then return "equivalent traces" end
+
+  tr1_matrix = Matrix.columns(trace_1)
+  tr2_matrix = Matrix.columns(trace_2)
+  
+  puts rotation_about_x?(tr1_matrix, tr2_matrix)
+  puts rotation_about_y?(tr1_matrix, tr2_matrix)
+  puts rotation_about_z?(tr1_matrix, tr2_matrix)
+end
